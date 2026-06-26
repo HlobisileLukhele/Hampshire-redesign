@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facilities — Hampshire Hotel Ballito</title>
+<meta name="description" content="Explore the facilities at Hampshire Hotel Ballito — swimming pool, restaurant, fitness centre, in-house bar, complimentary breakfast, free Wi-Fi and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="Hampshire Hotel home">
+    <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="60">
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="rooms.html">Accommodation</a></li>
+        <li class="nav-dropdown">
+          <a class="nav-dropdown__toggle" href="#">The Experience <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></a>
+          <ul class="nav-dropdown__menu">
+            <li><a class="active" href="facilities.html">Facilities</a></li>
+            <li><a href="conferences.html">Conference</a></li>
+            <li><a href="attractions.html">Attractions</a></li>
+          </ul>
+        </li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary btn-nav-book" href="contact.html#book">Book Now</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PAGE HERO ============ -->
+<section class="page-hero" style="position: relative; overflow: hidden; min-height: 40vh;">
+  
+  <div class="page-hero__bg" aria-hidden="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;">
+    <iframe 
+      src="https://www.youtube.com/embed/w1-olAv31PE?autoplay=1&mute=1&loop=1&playlist=w1-olAv31PE&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1" 
+      frameborder="0" 
+      allow="autoplay; fullscreen" 
+      allowfullscreen
+      style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%);"
+    ></iframe>
+    
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 0, 0, 0.35); z-index: 1;"></div>
+  </div>
+
+  <div class="container" style="position: relative; z-index: 2;">
+    <span class="eyebrow">Hotel Facilities</span>
+    <h1>Everything for a memorable stay</h1>
+    <p>From a refreshing pool to gourmet dining, our facilities are designed around your comfort.</p>
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span>/</span>Facilities
+    </nav>
+  </div>
+</section>
+
+
+<!-- ============ FACILITY SHOWCASE — GLASSMORPHISM GRID ============ -->
+<section class="section" style="background: var(--line);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Explore Our Facilities</span>
+      <h2>Comfort, leisure, and luxury</h2>
+    </div>
+
+    <div class="facility-glass-grid">
+      <article class="glass-card glass-card--navy reveal reveal-delay-1">
+        <div class="facility-glass-card__media">
+          <div class="img-slot">
+            <img class="img-real" src="images/Sunset-pool.png" alt="Swimming pool at Hampshire Hotel Ballito">
+          </div>
+        </div>
+        <div class="facility-glass-card__body">
+          <h3>Swimming Pool</h3>
+        </div>
+      </article>
+
+      <article class="glass-card glass-card--navy reveal reveal-delay-2">
+        <div class="facility-glass-card__media">
+          <div class="img-slot">
+            <img class="img-real" src="images/breakfast.jpg" alt="Restaurant dining at Hampshire Hotel Ballito">
+          </div>
+        </div>
+        <div class="facility-glass-card__body">
+          <h3>Restaurant Dining</h3>
+        </div>
+      </article>
+
+      <article class="glass-card glass-card--navy reveal reveal-delay-3">
+        <div class="facility-glass-card__media">
+          <div class="img-slot">
+            <img class="img-real" src="images/gym.webp" alt="Fitness centre at Hampshire Hotel Ballito">
+          </div>
+        </div>
+        <div class="facility-glass-card__body">
+          <h3>Fitness Centre</h3>
+        </div>
+      </article>
+
+      <article class="glass-card glass-card--navy reveal reveal-delay-1">
+        <div class="facility-glass-card__media">
+          <div class="img-slot">
+            <img class="img-real" src="images/Breakfast-in-bed.png" alt="Made-to-order breakfast at Hampshire Hotel Ballito">
+          </div>
+        </div>
+        <div class="facility-glass-card__body">
+          <h3>Made-to-order Breakfast</h3>
+        </div>
+      </article>
+
+      <article class="glass-card glass-card--navy reveal reveal-delay-2">
+        <div class="facility-glass-card__media">
+          <div class="img-slot">
+            <img class="img-real" src="images/hotel-lobby.webp" alt="Hampshire Lounge at Hampshire Hotel Ballito">
+          </div>
+        </div>
+        <div class="facility-glass-card__body">
+          <h3>Hampshire Lounge</h3>
+        </div>
+      </article>
+
+      <article class="glass-card glass-card--navy reveal reveal-delay-3">
+        <div class="facility-glass-card__media">
+          <div class="img-slot">
+            <img class="img-real" src="images/bar-2.webp" alt="In-house bar at Hampshire Hotel Ballito">
+          </div>
+        </div>
+        <div class="facility-glass-card__body">
+          <h3>In-house Bar</h3>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT'S INCLUDED ============ -->
+<section class="section section--paper">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What's Included</span>
+      <h2>Every stay includes</h2>
+    </div>
+
+    <div class="facility-includes">
+      <div class="facility-include reveal reveal-delay-1">
+        <div class="facility-include__icon">&#128719;</div>
+        <h4>Comfortable Beds</h4>
+      </div>
+      <div class="facility-include reveal reveal-delay-2">
+        <div class="facility-include__icon">&#128250;</div>
+        <h4>Flat Screen TV</h4>
+      </div>
+      <div class="facility-include reveal reveal-delay-3">
+        <div class="facility-include__icon">&#10052;&#65039;</div>
+        <h4>Air Conditioning</h4>
+      </div>
+      <div class="facility-include reveal reveal-delay-4">
+        <div class="facility-include__icon">&#128703;</div>
+        <h4>En-suite Bathroom</h4>
+      </div>
+      <div class="facility-include reveal reveal-delay-1">
+        <div class="facility-include__icon">&#128246;</div>
+        <h4>Free Wi-Fi</h4>
+      </div>
+      <div class="facility-include reveal reveal-delay-2">
+        <div class="facility-include__icon">&#127859;</div>
+        <h4>Breakfast Available</h4>
+        
+      </div>
+      <div class="facility-include reveal reveal-delay-3">
+        <div class="facility-include__icon">&#128274;</div>
+        <h4>In-room Safe</h4>
+       
+      </div>
+      <div class="facility-include reveal reveal-delay-4">
+        <div class="facility-include__icon">&#127359;&#65039;</div>
+        <h4>Free Parking</h4>
+       
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="section cta-band" style="position: relative; overflow: hidden; padding: clamp(80px, 10vw, 140px) 0;">
+  
+  <div  aria-hidden="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+    <img 
+  src="images/pool-2.png" 
+  alt="Hampshire Hotel pool deck with drinks" 
+  style="width: 100%; height: 100%; object-fit: cover; object-position: bottom  ;"
+>
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.45); z-index: 1;"></div>
+  </div>
+
+  <div class="container reveal" style="position: relative; z-index: 2; text-align: center;">
+    <h2>Ready to experience our facilities?</h2>
+    <p>Book your stay at Hampshire Hotel Ballito and enjoy all our amenities.</p>
+    <a class="btn btn-ghost-light" href="contact.html#book">Book Your Stay</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="60">
+        <p>Modern, elegant accommodation on KwaZulu-Natal's Dolphin Coast. Warm hospitality, a few steps from the sea.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2a1 1 0 0 1 1-1z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2.3 1.7 3.9 4 4v3c-1.5 0-2.9-.4-4-1.2V15a6 6 0 1 1-6-6c.3 0 .7 0 1 .1v3.2A3 3 0 1 0 13 15V3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="foot-h">Explore</h4>
+        <ul class="foot-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Accommodation</a></li>
+          <li><a href="facilities.html">Facilities</a></li>
+          <li><a href="conferences.html">Conferences</a></li>
+          <li><a href="attractions.html">Attractions</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="foot-h">Stay</h4>
+        <ul class="foot-links">
+          <li><a href="rooms.html#luxury-queen">Luxury Queen</a></li>
+          <li><a href="rooms.html#standard-king">Standard King</a></li>
+          <li><a href="rooms.html#queen-pool">Queen Pool View</a></li>
+          <li><a href="contact.html#book">Book Now</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="foot-h">Contact</h4>
+        <div class="foot-contact">
+          <span>1 Hampshire Drive, Ballito,<br>KwaZulu-Natal, 4420 <em>(placeholder)</em></span>
+          <a href="tel:+27320000000">+27 (0)32 000 0000</a>
+          <a href="mailto:reservations@hampshirehotel.co.za">reservations@hampshirehotel.co.za</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year">2026</span> Hampshire Hotel Ballito. All rights reserved.</span>
+      <span>Designed by Rightside Media &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

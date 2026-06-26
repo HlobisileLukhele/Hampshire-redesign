@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hampshire Hotel Ballito — Coastal Luxury on the Dolphin Coast</title>
+<meta name="description" content="Hampshire Hotel Ballito offers modern, elegant accommodation on KwaZulu-Natal's Dolphin Coast. Book sea-facing rooms, suites and curated coastal experiences.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="Hampshire Hotel home">
+     <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="60">
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="rooms.html">Accommodation</a></li>
+        <li class="nav-dropdown">
+          <a class="nav-dropdown__toggle" href="#">The Experience <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></a>
+          <ul class="nav-dropdown__menu">
+            <li><a href="facilities.html">Facilities</a></li>
+            <li><a href="conferences.html">Conference</a></li>
+            <li><a href="attractions.html">Attractions</a></li>
+          </ul>
+        </li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary btn-nav-book" href="contact.html#book">Book Now</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" style="position: relative; overflow: hidden; min-height: 80vh;">
+  
+  <div class="hero-video-bg" aria-hidden="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;">
+    <iframe 
+      src="https://www.youtube.com/embed/w1-olAv31PE?autoplay=1&mute=1&loop=1&playlist=w1-olAv31PE&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1" 
+      frameborder="0" 
+      allow="autoplay; fullscreen" 
+      allowfullscreen
+      style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%);"
+    ></iframe>
+    
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(15deg, rgba(10, 1, 3, 0.75) 0%, rgba(8, 0, 3, 0.4) 40%, rgba(0, 0, 0, 0.8) 70%, rgba(7, 6, 6, 0.9) 100%); z-index: 1;"></div>
+  </div>
+
+  <div class="container" style="position: relative; z-index: 2;">
+    <div class="hero__inner">
+      <span class="eyebrow">The  Coast · Ballito</span>
+      <h1>Enjoy Modern,<br><em>Elegant</em> Accommodation</h1>
+      <p class="hero__lead">Experience refined coastal comfort at Hampshire Hote.</p>
+      <div class="hero__actions">
+        <a class="btn btn-primary" href="rooms.html">Explore Rooms</a>
+        <a class="btn btn-ghost-light" href="about.html">Our Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKING WIDGET ============ -->
+<div class="booking">
+  <div class="container">
+    <div class="booking__card" role="search" aria-label="Check availability">
+      <div class="field">
+        <label for="checkIn">Check in</label>
+        <input type="date" id="checkIn">
+      </div>
+      <div class="field">
+        <label for="checkOut">Check out</label>
+        <input type="date" id="checkOut">
+      </div>
+      <div class="field">
+        <label for="guests">Guests</label>
+        <select id="guests">
+          <option>1</option><option selected>2</option><option>3</option><option>4</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="rooms">Rooms</label>
+        <select id="rooms">
+          <option selected>1</option><option>2</option><option>3</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" id="checkAvailability">Check Availability</button>
+    </div>
+    <p class="booking__note" id="bookingNote" role="status" aria-live="polite"></p>
+  </div>
+</div>
+
+<!-- ============ DISCOVER YOUR STAY ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Discover Your Stay</span>
+      <h2>Rooms designed around rest</h2>
+      <p>Explore the comfort of our thoughtfully designed rooms — each finished with a quiet, coastal elegance.</p>
+    </div>
+
+    <div class="room-grid" style="grid-template-columns:repeat(2,1fr);max-width:95%;margin:0 auto;">
+      <!-- Card 1 — King Room -->
+      <article class="room-card glass-card glass-card--navy reveal">
+        <div class="img-slot img-slot--warm">
+          <img class="img-real" src="images/room.png" alt="King Room with one king bed">
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__head">
+            <h3 style="color:#fff">King Room</h3>
+            <span class="sleeps">1 King bed · Occupancy 2</span>
+          </div>
+          <p style="color:rgba(255,255,255,.9)">One comfortable King-size bed with all standard amenities including flatscreen TV, air conditioning, and en-suite bathroom.</p>
+          <div class="room-card__foot">
+            <a class="btn btn-outline" href="rooms.html#king-rooms">View Details</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 — Queen Room -->
+      <article class="room-card glass-card glass-card--navy reveal">
+        <div class="img-slot img-slot--cool">
+          <img class="img-real" src="images/Room-web.png" alt="Queen Room with two queen beds">
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__head">
+            <h3 style="color:#fff">Queen Room</h3>
+            <span class="sleeps">2 Queen beds · Occupancy 4</span>
+          </div>
+          <p style="color:rgba(255,255,255,.9)">Two comfortable Queen-size beds, ideal for families. All standard amenities including flatscreen TV, air conditioning, and en-suite bathroom.</p>
+          <div class="room-card__foot">
+            <a class="btn btn-outline" href="rooms.html#queen-rooms">View Details</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AMENITIES ============ -->
+<section class="section section--navy-bg" style="background: linear-gradient(135deg, #131F37, #1B2A4A);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Hotel Amenities</span>
+      <h2>Everything for an easy stay</h2>
+      <p>Considered touches and genuine service, from arrival to checkout.</p>
+    </div>
+    <div class="amenity-grid">
+      <div class="amenity glass-card reveal">
+        <div class="glass-icon">🏊</div>
+        <h3 style="color:#fff">Swimming Pool</h3>
+        <p style="color:rgba(255,255,255,.9)">Take a refreshing dip in our crystal-clear pool or unwind on the loungers.</p>
+      </div>
+      <div class="amenity glass-card reveal">
+        <div class="glass-icon">🏋️</div>
+        <h3 style="color:#fff">Fitness Center</h3>
+        <p style="color:rgba(255,255,255,.9)">Stay active with our modern gym equipment for a complete workout.</p>
+      </div>
+      <div class="amenity glass-card reveal">
+        <div class="glass-icon">🍽️</div>
+        <h3 style="color:#fff">Restaurant</h3>
+        <p style="color:rgba(255,255,255,.9)">Enjoy delicious meals at our on-site restaurant, made with fresh ingredients.</p>
+      </div>
+      <div class="amenity glass-card reveal">
+        <div class="glass-icon">📶</div>
+        <h3 style="color:#fff">Free Wi-Fi</h3>
+        <p style="color:rgba(255,255,255,.9)">Stay connected with complimentary high-speed Wi-Fi throughout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ LOCATION / EXPERIENCE ============ -->
+<section class="section">
+  <div class="container">
+    <div class="split reveal">
+      <div class="split__media img-slot img-slot--maroon">
+        <img class="img-real" src="images/ballito-beach.jpg" alt="Ballito coastline">
+        </div>
+      <div class="split__body">
+        <span class="eyebrow">On the Dolphin Coast</span>
+        <h2>Moments from the beach, minutes from everything</h2>
+        <p>Set in the heart of Ballito, Hampshire Hotel places you within easy reach of golden beaches, tidal pools and the Dolphin Coast's best restaurants — with King Shaka International a short drive away.</p>
+        <ul class="feature-list">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Walking distance to Willard &amp; Salmon Bay beaches</li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>20 minutes from King Shaka International Airport</li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Close to Ballito Junction Regional Mall</li>
+        </ul>
+        <a class="btn btn-primary" href="about.html">Discover the area</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="section reviews">
+  <div class="container">
+    <div class="reviews__grid">
+      <div class="score reveal">
+        </div>
+      
+      <div class="reviews-carousel reveal">
+        <div class="reviews-carousel__track" id="reviewsTrack">
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="60">
+        <p>Modern, elegant accommodation on KwaZulu-Natal's Dolphin Coast. Warm hospitality, a few steps from the sea.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2a1 1 0 0 1 1-1z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2.3 1.7 3.9 4 4v3c-1.5 0-2.9-.4-4-1.2V15a6 6 0 1 1-6-6c.3 0 .7 0 1 .1v3.2A3 3 0 1 0 13 15V3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="foot-h">Explore</h4>
+        <ul class="foot-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Accommodation</a></li>
+          <li><a href="facilities.html">Facilities</a></li>
+          <li><a href="conferences.html">Conferences</a></li>
+          <li><a href="attractions.html">Attractions</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="foot-h">Stay</h4>
+        <ul class="foot-links">
+          <li><a href="rooms.html#king-rooms">King Room</a></li>
+          <li><a href="rooms.html#queen-rooms">Queen Room</a></li>
+          <li><a href="contact.html#book">Book Now</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="foot-h">Contact</h4>
+        <div class="foot-contact">
+          <span>1 Hampshire Drive, Ballito,<br>KwaZulu-Natal, 4420 <em>(placeholder)</em></span>
+          <a href="tel:+27320000000">+27 (0)32 000 0000</a>
+          <a href="mailto:reservations@hampshirehotel.co.za">reservations@hampshirehotel.co.za</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Hampshire Hotel Ballito. All rights reserved.</span>
+      <span>Designed by Rightside Media · <a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

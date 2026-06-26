@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accommodation — Hampshire Hotel Ballito</title>
+<meta name="description" content="Rooms and suites at Hampshire Hotel Ballito — Premium Rooms, Deluxe Rooms and Executive Suites with sea views, premium linens and coastal comfort.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="Hampshire Hotel home">
+      <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="60">
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="active" href="rooms.html">Accommodation</a></li>
+        <li class="nav-dropdown">
+          <a class="nav-dropdown__toggle" href="#">The Experience <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></a>
+          <ul class="nav-dropdown__menu">
+            <li><a href="facilities.html">Facilities</a></li>
+            <li><a href="conferences.html">Conference</a></li>
+            <li><a href="attractions.html">Attractions</a></li>
+          </ul>
+        </li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary btn-nav-book" href="contact.html#book">Book Now</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero__bg img-bg" aria-hidden="true">
+    <img class="img-real" src="images/Room-web.png" alt="Hampshire Hotel bedroom">
+  </div>
+  <div class="container">
+    <span class="eyebrow">Accommodation</span>
+    <h1>Rooms designed for rest</h1>
+    <p>Comfortable, well-appointed rooms — from our Standard King to the Luxury Queen with pool views.</p>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span>Accommodation</nav>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section class="section">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:48px;">
+      <h2 style="color:var(--navy);font-size:clamp(2rem,4vw,3rem);">Our Rooms</h2>
+    </div>
+
+    <!-- King Rooms -->
+    <article class="room-row reveal" id="king-rooms">
+      <div class="room-row__media img-slot img-slot--warm">
+        <img class="img-real" src="images/Room.png" alt="King Room">
+      </div>
+      <div class="room-row__body">
+        <span class="eyebrow">1 King bed · Occupancy 2</span>
+        <h2>King Rooms</h2>
+        <p>Our King Room features one comfortable King-size bed and plenty of room to stretch out. Its ideally suited for 2 people and provides all necessary amenities to make your trip comfortable and pleasant. It offers all the amenities of a standard room, including a flatscreen TV, air conditioning, work station, microwave, mini fridge, and more. The room features wheelchair-friendly wide doors, spacious interiors, and an en-suite bathroom.</p>
+        <ul class="spec-list">
+          <li>🛏️ 1 King bed</li>
+          <li>📶 Wifi</li>
+          <li>📺 Television</li>
+          <li>❄️ AC</li>
+          <li>🧊 Fridge</li>
+          <li>⬜ Microwave</li>
+          <li>💻 Workstation</li>
+          <li>🔒 Safe</li>
+        </ul>
+        <div class="room-row__foot">
+          <a class="btn btn-outline" href="king-room.html">View Details</a>
+          <a class="btn btn-primary" href="contact.html#book">Book Now</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Queen Rooms -->
+    <article class="room-row room-row--rev reveal" id="queen-rooms">
+      <div class="room-row__media img-slot img-slot--cool">
+        <img class="img-real" src="images/Room-web.png" alt="Queen Room">
+      </div>
+      <div class="room-row__body">
+        <span class="eyebrow">2 Queen beds · Occupancy 4</span>
+        <h2>Queen Rooms</h2>
+        <p>Our Queen Room features two comfortable Queen-size beds and plenty of room to stretch out. Its ideally suited for a family of four and provides all necessary amenities to make your trip comfortable and pleasant. It offers all the amenities of a standard room, including a flatscreen TV, air conditioning, work station, microwave, mini fridge, and more. The room features wheelchair-friendly wide doors, spacious interiors, and an en-suite bathroom.</p>
+        <ul class="spec-list">
+          <li>🛏️🛏️ 2 Queen beds</li>
+          <li>📶 Wifi</li>
+          <li>📺 Television</li>
+          <li>❄️ AC</li>
+          <li>🧊 Fridge</li>
+          <li>⬜ Microwave</li>
+          <li>💻 Workstation</li>
+          <li>🔒 Safe</li>
+        </ul>
+        <div class="room-row__foot">
+          <a class="btn btn-outline" href="queen-room.html">View Details</a>
+          <a class="btn btn-primary" href="contact.html#book">Book Now</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- King Mobility-Friendly Rooms -->
+    <article class="room-row reveal" id="king-mobility">
+      <div class="room-row__media img-slot img-slot--deep">
+        <img class="img-real" src="images/Room.png" alt="King Mobility-Friendly Room">
+      </div>
+      <div class="room-row__body">
+        <span class="eyebrow">1 King bed · Occupancy 2</span>
+        <h2>King Mobility-Friendly Rooms</h2>
+        <p>Our King Mobility-Friendly room is thoughtfully designed for comfort, safety, and easy mobility. It offers all the amenities of a standard room, including a flatscreen TV, air conditioning, work station, microwave, mini fridge, and more. The room features wheelchair-friendly wide doors, spacious interiors, and an en-suite bathroom with a ramp-access shower, support handles, and safety features like visual siren alarms and emergency alerts, ensuring a comfortable and secure stay for guests with mobility needs.</p>
+        <ul class="spec-list">
+          <li>🛏️ 1 King bed</li>
+          <li>📶 Wifi</li>
+          <li>📺 Television</li>
+          <li>❄️ AC</li>
+          <li>🧊 Fridge</li>
+          <li>⬜ Microwave</li>
+          <li>💻 Workstation</li>
+          <li>🔒 Safe</li>
+        </ul>
+        <div class="room-row__foot">
+          <a class="btn btn-outline" href="king-room.html">View Details</a>
+          <a class="btn btn-primary" href="contact.html#book">Book Now</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Queen Mobility-Friendly Rooms -->
+    <article class="room-row room-row--rev reveal" id="queen-mobility">
+      <div class="room-row__media img-slot img-slot--warm">
+        <img class="img-real" src="images/Room-web.png" alt="Queen Mobility-Friendly Room">
+      </div>
+      <div class="room-row__body">
+        <span class="eyebrow">2 Queen beds · Occupancy 4</span>
+        <h2>Queen Mobility-Friendly Rooms</h2>
+        <p>Our Queen Mobility-Friendly room is thoughtfully designed for comfort, safety, and easy mobility. It offers all the amenities of a standard room, including a flatscreen TV, air conditioning, work station, microwave, mini fridge, and more. The room features wheelchair-friendly wide doors, spacious interiors, and an en-suite bathroom with a ramp-access shower, support handles, and safety features like visual siren alarms and emergency alerts, ensuring a comfortable and secure stay for guests with mobility needs.</p>
+        <ul class="spec-list">
+          <li>🛏️🛏️ 2 Queen beds</li>
+          <li>📶 Wifi</li>
+          <li>📺 Television</li>
+          <li>❄️ AC</li>
+          <li>🧊 Fridge</li>
+          <li>⬜ Microwave</li>
+          <li>💻 Workstation</li>
+          <li>🔒 Safe</li>
+        </ul>
+        <div class="room-row__foot">
+          <a class="btn btn-outline" href="queen-room.html">View Details</a>
+          <a class="btn btn-primary" href="contact.html#book">Book Now</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-band">
+  <div class="container reveal">
+    <h2>Not sure which room suits you?</h2>
+    <p>Tell us your dates and party size — our reservations team will recommend the right fit.</p>
+    <a class="btn btn-ghost-light" href="contact.html#book">Enquire Now</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="60">
+        <p>Modern, elegant accommodation on KwaZulu-Natal's Dolphin Coast. Warm hospitality, a few steps from the sea.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2a1 1 0 0 1 1-1z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2.3 1.7 3.9 4 4v3c-1.5 0-2.9-.4-4-1.2V15a6 6 0 1 1-6-6c.3 0 .7 0 1 .1v3.2A3 3 0 1 0 13 15V3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="foot-h">Explore</h4>
+        <ul class="foot-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Accommodation</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="foot-h">Stay</h4>
+        <ul class="foot-links">
+          <li><a href="rooms.html#king-rooms">King Rooms</a></li>
+          <li><a href="rooms.html#queen-rooms">Queen Rooms</a></li>
+          <li><a href="rooms.html#king-mobility">King Mobility-friendly Rooms</a></li>
+          <li><a href="contact.html#book">Book Now</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="foot-h">Contact</h4>
+        <div class="foot-contact">
+          <span>1 Hampshire Drive, Ballito,<br>KwaZulu-Natal, 4420 <em>(placeholder)</em></span>
+          <a href="tel:+27320000000">+27 (0)32 000 0000</a>
+          <a href="mailto:reservations@hampshirehotel.co.za">reservations@hampshirehotel.co.za</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Hampshire Hotel Ballito. All rights reserved.</span>
+      <span>Designed by Rightside Media · <a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
