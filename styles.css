@@ -1115,3 +1115,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+@media (max-width: 768px) {
+    .room-grid.mobile-responsive-grid {
+      grid-template-columns: 1fr !important;
+      gap: 20px; /* Adds space between the stacked cards on mobile */
+    }
+  }
