@@ -948,6 +948,9 @@ h1, h2, h3, h4 {
 /* ═══════════════════════════════════════════
    REVIEWS / TESTIMONIALS STYLES
 ═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   REVIEWS / TESTIMONIALS STYLES
+═══════════════════════════════════════════ */
 #reviews {
   background: var(--off-white);
   padding: 100px 0;
@@ -957,7 +960,7 @@ h1, h2, h3, h4 {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 56px;
+  margin-bottom: 60px;
   gap: 24px;
   flex-wrap: wrap;
 }
@@ -1020,7 +1023,7 @@ h1, h2, h3, h4 {
 }
 
 .google-badge .stars { 
-  color: var(--gold); 
+  color: #ffd650; 
   font-size: 0.78rem; 
 }
 
@@ -1052,7 +1055,7 @@ h1, h2, h3, h4 {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius-md);
-  padding: 28px;
+  padding: 40px;
   box-shadow: 0 8px 32px rgba(15, 91, 92, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.5);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
@@ -1067,15 +1070,24 @@ h1, h2, h3, h4 {
   background: rgba(255, 255, 255, 0.75);
 }
 
+/* Main Star Container Override */
 .review-stars { 
-  color: var(--gold); 
+  color: #ffd650 !important; 
   font-size: 0.85rem; 
-  margin-bottom: 14px; 
+  margin-bottom: 25px; 
+}
+
+/* Force gold color onto nested Font Awesome tags, SVGs, or paths */
+.review-stars i,
+.review-stars svg,
+.review-stars path {
+  color: #ffd650 !important;
+  fill: #ffd650 !important;
 }
 
 .review-stars .g-logo {
   float: right;
-  color: #4285F4;
+  color: #4285F4 !important; /* Forces the 'G' back to Google Blue so it doesn't match the gold */
   font-style: normal;
   font-weight: 700;
   font-size: 0.88rem;
