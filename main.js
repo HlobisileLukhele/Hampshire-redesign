@@ -3,7 +3,7 @@
   "use strict";
 
   /* ---- Mobile nav ---- */
-  var header = document.querySelector(".site-header");
+    var header = document.querySelector(".site-header");
   var toggle = document.querySelector(".nav-toggle");
   if (toggle && header) {
     toggle.addEventListener("click", function () {

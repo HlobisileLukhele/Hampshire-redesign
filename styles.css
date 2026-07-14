@@ -302,7 +302,7 @@ h1, h2, h3, h4 {
 .room-card__body { padding: 26px 24px 28px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .room-card__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .room-card h3 { font-size: 1.4rem; }
-.room-card .sleeps { font-size: .74rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+.room-card .sleeps { font-size: .74rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 600;}
 .room-card p { font-size: .96rem; color: var(--body); margin: 0; }
 .room-card__foot { margin-top: auto; padding-top: 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); }
 .price { display: flex; align-items: baseline; gap: 6px; }
