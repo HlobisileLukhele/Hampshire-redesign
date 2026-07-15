@@ -2,12 +2,7 @@
 (function () {
   "use strict";
 
-  var bookingUrl = "https://hampshirehotel.co.za/bookings/#/hotel/90";
-
-  if (document.body && document.body.hasAttribute("data-booknow-redirect")) {
-    window.location.replace(bookingUrl);
-    return;
-  }
+  var bookingUrl = "booknow.html";
 
   /* ---- Mobile nav ---- */
     var header = document.querySelector(".site-header");
@@ -47,8 +42,28 @@
       if (outEl) outEl.min = inEl.value || today;
     });
     bookBtn.addEventListener("click", function () {
-      window.location.assign(bookingUrl);
-      return;
+      var selectedCheckIn = inEl && inEl.value;
+      var selectedCheckOut = outEl && outEl.value;
+      if (selectedCheckIn && selectedCheckOut && selectedCheckOut > selectedCheckIn) {
+        var selectedGuests = (document.getElementById("guests") || {}).value || "1";
+        var selectedRooms = (document.getElementById("rooms") || {}).value || "1";
+        var bookingSearch = {
+          checkIn: selectedCheckIn,
+          checkOut: selectedCheckOut,
+          guests: selectedGuests,
+          rooms: selectedRooms
+        };
+        var query = new URLSearchParams(bookingSearch);
+
+        try {
+          window.sessionStorage.setItem("hampshireBookingSearch", JSON.stringify(bookingSearch));
+        } catch (error) {
+          /* The URL query still carries the search if storage is unavailable. */
+        }
+
+        window.location.assign(bookingUrl + "?" + query.toString());
+        return;
+      }
 
       var note = document.getElementById("bookingNote");
       if (!note) return;
