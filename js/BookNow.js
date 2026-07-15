@@ -1,3 +1,1 @@
-
-<script type="text/javascript" src="https://nebulacrs.hti.app/apollo3/booknow/static/js/booknow.js"></script>
-
+/* Booking is hosted at https://hampshirehotel.co.za/bookings/#/hotel/90. */

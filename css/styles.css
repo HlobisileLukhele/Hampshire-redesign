@@ -1230,6 +1230,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .hero-slider__label { right: auto; left: 20px; bottom: 20px; }
 }
 @media (max-width: 760px) {
+  .nav { gap: 8px; }
+  .nav-cta { gap: 8px; margin-left: auto; }
   .nav-toggle { display: inline-flex; }
   .nav-links {
     position: absolute; top: 74px; left: 0; right: 0;
@@ -1242,7 +1244,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .nav-links li { width: 100%; }
   .nav-links a { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); width: 100%; }
   .nav-links a::after { display: none; }
-  .nav-cta .btn-nav-book { display: none; }
+  .nav-cta .btn-nav-book {
+    display: inline-flex;
+    padding: 10px 12px;
+    font-size: .78rem;
+    white-space: nowrap;
+  }
 }
 @media (max-width: 620px) {
   body { font-size: 16px; }

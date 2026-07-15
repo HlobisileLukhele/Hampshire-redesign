@@ -36,8 +36,8 @@
       </ul>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-primary btn-nav-book" href="contact.html#book">Book Now</a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      <a class="btn btn-primary btn-nav-book" href="https://hampshirehotel.co.za/bookings/#/hotel/90">Book Now</a>
+      <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
 </header>
@@ -94,7 +94,7 @@
           <option selected>1</option><option>2</option><option>3</option>
         </select>
       </div>
-      <button class="btn btn-primary" id="checkAvailability">Check Availability</button>
+      <button type="button" class="btn btn-primary" id="checkAvailability">Check Availability</button>
     </div>
     <p class="booking__note" id="bookingNote" role="status" aria-live="polite"></p>
   </div>
@@ -477,7 +477,7 @@
         <ul class="foot-links">
           <li><a href="rooms.html#king-rooms">King Room</a></li>
           <li><a href="rooms.html#queen-rooms">Queen Room</a></li>
-          <li><a href="contact.html#book">Book Now</a></li>
+          <li><a href="https://hampshirehotel.co.za/bookings/#/hotel/90">Book Now</a></li>
         </ul>
       </div>
       <div>
@@ -496,24 +496,6 @@
   </div>
 </footer>
 
-<!-- Execution-->
-<script type="text/javascript">
-  // Ensure the DOM is fully loaded and the displayBookNow function exists
-  window.addEventListener('DOMContentLoaded', function() {
-    if (typeof displayBookNow === 'function') {
-      displayBookNow({
-        siteId: 218,
-        elementId: 'booknow',
-        key: '-Nw8jO3FKE0nBC3JUI6X', 
-        autoSearch: true,
-        singleProperty: true,
-        connectionCode: 'BOOKNOW'
-      });
-    } else {
-      console.error('displayBookNow function is not defined. Check if booknow.js loaded correctly.');
-    }
-  });
-</script>
 <script src="js/main.js"></script>
 </body>
 </html>
