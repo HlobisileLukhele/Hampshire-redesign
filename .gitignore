@@ -1,0 +1,10 @@
+# Dependencies installed locally for the backend
+node_modules/
+
+# Environment-specific secrets and settings
+.env
+.env.*
+!.env.example
+
+# npm diagnostic files
+npm-debug.log*
