@@ -5,7 +5,10 @@
 .booknow-hero {
   background: linear-gradient(135deg, var(--navy-dark), var(--navy));
   color: var(--white);
-  padding: clamp(56px, 9vw, 96px) 0;
+  height: var(--inner-page-header-height);
+  display: flex;
+  align-items: center;
+  padding: 24px 0;
   text-align: center;
 }
 

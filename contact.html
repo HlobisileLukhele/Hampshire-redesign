@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-ZA">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PDRLTQWM');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact &amp; Booking — Hampshire Hotel Ballito</title>
@@ -11,6 +18,10 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDRLTQWM"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <header class="site-header">
   <div class="container nav">
@@ -88,28 +99,28 @@
     <div class="form-row">
       <div class="form-group">
         <label for="fName">Full name</label>
-        <input type="text" id="fName" name="name" placeholder="Your name" required>
+        <input type="text" id="fName" name="name" placeholder="Your name" autocomplete="name" minlength="2" maxlength="120" required>
       </div>
       <div class="form-group">
         <label for="fEmail">Email</label>
-        <input type="email" id="fEmail" name="email" placeholder="you@email.com" required>
+        <input type="email" id="fEmail" name="email" placeholder="you@email.com" autocomplete="email" maxlength="254" required>
       </div>
     </div>
     
     <div class="form-row">
       <div class="form-group">
         <label for="fPhone">Phone number</label>
-        <input type="tel" id="fPhone" name="phone" placeholder="e.g. +27 82 123 4567">
+        <input type="tel" id="fPhone" name="phone" placeholder="e.g. +27 82 123 4567" autocomplete="tel" maxlength="40">
       </div>
       <div class="form-group">
         <label for="fSubject">Subject</label>
-        <input type="text" id="fSubject" name="subject" placeholder="What is your enquiry about?">
+        <input type="text" id="fSubject" name="subject" placeholder="What is your enquiry about?" maxlength="180">
       </div>
     </div>
     
     <div class="form-group">
       <label for="fMsg">Message</label>
-      <textarea id="fMsg" name="message" placeholder="How can we assist you today?..." required></textarea>
+      <textarea id="fMsg" name="message" placeholder="How can we assist you today?..." minlength="10" maxlength="5000" required></textarea>
     </div>
     
     <button type="submit" class="btn btn-primary btn-block">Send Enquiry</button>

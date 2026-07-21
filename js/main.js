@@ -85,16 +85,49 @@
   /* ---- Contact / enquiry form ---- */
   var form = document.getElementById("enquiryForm");
   if (form) {
-    form.addEventListener("submit", function (ev) {
+    form.addEventListener("submit", async function (ev) {
       ev.preventDefault();
       var status = document.getElementById("formStatus");
-      var name = (document.getElementById("fName") || {}).value || "there";
+      var submitButton = form.querySelector('button[type="submit"]');
+      var formData = new FormData(form);
+      var payload = Object.fromEntries(formData.entries());
+
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+      form.setAttribute("aria-busy", "true");
+
       if (status) {
-        status.innerHTML = "Thank you, <b>" + name.split(" ")[0] +
-          "</b> — your enquiry has been received. Our reservations team will be in touch within one business day.";
+        status.textContent = "Sending your enquiry…";
         status.classList.add("show");
       }
-      form.reset();
+
+      try {
+        var apiResponse = await fetch("/api/enquiries", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        var responseData = await apiResponse.json().catch(function () { return {}; });
+
+        if (!apiResponse.ok) {
+          throw new Error(responseData.message || "Unable to send your enquiry.");
+        }
+
+        if (status) {
+          status.textContent = responseData.message;
+        }
+        form.reset();
+      } catch (error) {
+        if (status) {
+          status.textContent = error.message || "Unable to send your enquiry. Please call reservations for assistance.";
+        }
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+        }
+        form.removeAttribute("aria-busy");
+      }
     });
   }
 
