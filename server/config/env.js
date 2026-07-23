@@ -20,7 +20,12 @@ const environmentSchema = z.object({
   DB_SSL: booleanFromEnvironment.default(false),
   DB_CONNECTION_LIMIT: z.coerce.number().int().min(1).max(20).default(5),
   CONTACT_RATE_LIMIT_WINDOW_MINUTES: z.coerce.number().int().min(1).max(1440).default(15),
-  CONTACT_RATE_LIMIT_MAX: z.coerce.number().int().min(1).max(100).default(5)
+  CONTACT_RATE_LIMIT_MAX: z.coerce.number().int().min(1).max(100).default(5),
+  MS_TENANT_ID: z.string().trim().min(1, "MS_TENANT_ID is required"),
+  MS_CLIENT_ID: z.string().trim().min(1, "MS_CLIENT_ID is required"),
+  MS_CLIENT_SECRET: z.string().min(1, "MS_CLIENT_SECRET is required"),
+  SENDER_EMAIL: z.string().trim().email("SENDER_EMAIL must be a valid email address"),
+  RECIPIENT_EMAIL: z.string().trim().email("RECIPIENT_EMAIL must be a valid email address")
 });
 
 const parsedEnvironment = environmentSchema.safeParse(process.env);

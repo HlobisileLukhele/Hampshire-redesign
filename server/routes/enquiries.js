@@ -2,7 +2,8 @@ const express = require("express");
 const rateLimit = require("express-rate-limit");
 const { z } = require("zod");
 const env = require("../config/env");
-const { createEnquiry } = require("../services/enquiry-service");
+const { sendFormEmail } = require("../services/mailer");
+const { createEnquiry, updateEnquiryStatus } = require("../services/enquiry-service");
 
 const router = express.Router();
 
@@ -50,15 +51,41 @@ router.post("/", enquiryRateLimit, async (request, response, next) => {
     });
   }
 
-  try {
-    await createEnquiry(parsedEnquiry.data);
+  let enquiryId;
 
-    return response.status(201).json({
-      message: "Your enquiry has been received. Our reservations team will be in touch within one business day."
-    });
+  try {
+    enquiryId = await createEnquiry(parsedEnquiry.data);
   } catch (error) {
     return next(error);
   }
+
+  try {
+    await sendFormEmail(parsedEnquiry.data);
+  } catch (error) {
+    console.error(`Failed to send email notification for enquiry ${enquiryId}`, error);
+
+    try {
+      await updateEnquiryStatus(enquiryId, "failed");
+    } catch (statusError) {
+      console.error(`Failed to mark enquiry ${enquiryId} as failed`, statusError);
+    }
+
+    return response.status(500).json({
+      success: false,
+      message: "Failed to send email notification"
+    });
+  }
+
+  try {
+    await updateEnquiryStatus(enquiryId, "sent");
+  } catch (error) {
+    console.error(`Failed to update enquiry ${enquiryId} to 'sent'`, error);
+  }
+
+  return response.status(200).json({
+    success: true,
+    message: "Enquiry submitted successfully"
+  });
 });
 
 module.exports = router;

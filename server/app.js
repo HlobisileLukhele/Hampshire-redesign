@@ -47,7 +47,7 @@ function createApp() {
   app.use("/js", express.static(path.join(siteRoot, "js"), { index: false }));
 
   app.get("/", (_request, response) => response.sendFile(path.join(siteRoot, "index.html")));
-  pages.filter((page) => page !== "index.html").forEach((page) => {
+  pages.forEach((page) => {
     app.get(`/${page}`, (_request, response) => response.sendFile(path.join(siteRoot, page)));
   });
 
