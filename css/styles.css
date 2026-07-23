@@ -187,12 +187,6 @@ h1, h2, h3, h4 {
   background: linear-gradient(135deg, #efe7df 0%, #e3d8cf 45%, #d8cabd 100%);
   display: flex; align-items: flex-end; justify-content: flex-start;
 }
-.img-slot::before {
-  content: ""; position: absolute; inset: 0;
-  background:
-    radial-gradient(120% 80% at 75% 15%, rgba(255,255,255,.55), transparent 55%),
-    radial-gradient(90% 70% at 10% 95%, rgba(27,42,74,.10), transparent 60%);
-}
 .img-slot--warm  { background: linear-gradient(135deg, #f0e7df, #ddc9b9 90%); }
 .img-slot--cool  { background: linear-gradient(135deg, #e7ecf3, #c9d3e2 90%); }
 .img-slot--deep  { background: linear-gradient(135deg, #d9c6b8, #b79e8d 90%); }
