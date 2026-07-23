@@ -10,7 +10,7 @@
     "db:down": "docker compose down",
     "db:ui": "docker compose up -d adminer",
     "db:logs": "docker compose logs -f mysql",
-    "check": "node --check server/app.js && node --check server/server.js && node --check server/config/env.js && node --check server/db/migrate.js && node --check server/db/pool.js && node --check server/routes/enquiries.js && node --check server/routes/health.js && node --check server/services/enquiry-service.js && node --check js/main.js"
+    "check": "node --check server/app.js && node --check server/server.js && node --check server/config/env.js && node --check server/db/migrate.js && node --check server/db/pool.js && node --check server/routes/enquiries.js && node --check server/routes/health.js && node --check server/services/enquiry-service.js && node --check server/services/mailer.js && node --check js/main.js"
   },
   "keywords": [],
   "author": "",
