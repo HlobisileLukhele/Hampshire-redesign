@@ -352,6 +352,7 @@ h1, h2, h3, h4 {
   display: flex; align-items: center; justify-content: center;
 }
 .amenity__icon svg { width: 26px; height: 26px; }
+.ui-icon { display: block; width: 1.25em; height: 1.25em; flex: none; color: var(--maroon); fill: currentColor; }
 .amenity h3 { font-size: 1.12rem; margin-bottom: 8px; }
 .amenity p { font-size: .9rem; margin: 0; }
 
@@ -471,6 +472,7 @@ h1, h2, h3, h4 {
 .spec-list li svg,
 .spec-list li .icon,
 .spec-list li [style*="color"] { flex: none; color: var(--maroon); }
+.spec-list .ui-icon { display: inline-block; width: 1em; height: 1em; margin-right: .35em; vertical-align: -.15em; }
 
 /* Room row buttons - enhanced */
 .room-row__foot {
@@ -702,11 +704,34 @@ h1, h2, h3, h4 {
 .room-feature-card p { font-size: .88rem; color: var(--body); line-height: 1.6; margin: 0; text-align: center; }
 
 /* Room details grid */
-.room-details-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 900px; margin: 0 auto; }
-.room-detail-item { text-align: center; }
-.room-detail-item__icon { width: 48px; height: 48px; margin: 0 auto 12px; border-radius: 50%; background: var(--navy-tint); color: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
-.room-detail-item h4 { font-size: .95rem; font-family: var(--sans); font-weight: 600; color: var(--ink); margin-bottom: 4px; }
-.room-detail-item p { font-size: .85rem; color: var(--muted); margin: 0; }
+.room-details-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1080px; margin: 0 auto; }
+.room-detail-item,
+.detail-item {
+  min-height: 196px;
+  padding: 28px 24px;
+  border: 1px solid rgba(255,255,255,.78);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(255,255,255,.78), rgba(246,236,237,.58));
+  box-shadow: 0 8px 24px rgba(27,42,74,.08), inset 0 1px 0 rgba(255,255,255,.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+}
+.room-detail-item:hover,
+.detail-item:hover {
+  transform: translateY(-8px);
+  border-color: rgba(122,31,43,.24);
+  box-shadow: 0 20px 46px rgba(27,42,74,.20), 0 28px 70px rgba(122,31,43,.18), inset 0 1px 0 rgba(255,255,255,.85);
+}
+.room-detail-item__icon, .detail-icon { width: 52px; height: 52px; margin: 0 auto 16px; border-radius: 50%; background: var(--maroon-tint); color: var(--maroon); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+.room-detail-item h4,
+.detail-item h4 { font-size: 1.05rem; font-family: var(--display); font-weight: 600; color: var(--ink); margin: 0 0 8px; }
+.room-detail-item p,
+.detail-item p { font-size: .92rem; color: var(--body); line-height: 1.6; margin: 0; }
 
 /* Room gallery */
 .room-gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
@@ -1021,11 +1046,11 @@ h1, h2, h3, h4 {
 /* Glassmorphism icon circle */
 .glass-icon {
   width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%;
-  background: rgba(27, 42, 74, 0.25);
-  backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.2);
+  background: var(--maroon-tint);
+  border: 1px solid rgba(122,31,43,.18);
   display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 1.6rem;
-  box-shadow: 0 4px 16px rgba(27, 42, 74, 0.2);
+  color: var(--maroon); font-size: 1.6rem;
+  box-shadow: 0 4px 16px rgba(122,31,43,.16);
 }
 
 /* =========================================================
