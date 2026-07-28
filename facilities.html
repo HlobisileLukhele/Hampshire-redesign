@@ -56,16 +56,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ PAGE HERO ============ -->
 <section class="page-hero" style="position: relative; overflow: hidden;">
   
-  <div class="page-hero__bg" aria-hidden="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;">
+  <div class="page-hero__bg hero-video-bg" aria-hidden="true">
     <iframe 
-      src="https://www.youtube.com/embed/w1-olAv31PE?autoplay=1&mute=1&loop=1&playlist=w1-olAv31PE&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1" 
+      class="js-hero-video"
+      data-video-id="w1-olAv31PE"
+      src="https://www.youtube.com/embed/w1-olAv31PE?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=w1-olAv31PE&amp;controls=0&amp;playsinline=1&amp;rel=0"
       frameborder="0" 
-      allow="autoplay; fullscreen" 
+      title="Hampshire Hotel"
+      loading="eager"
+      tabindex="-1"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
       allowfullscreen
-      style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; transform: translate(-50%, -50%);"
     ></iframe>
-    
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 0, 0, 0.35); z-index: 1;"></div>
   </div>
 
   <div class="container" style="position: relative; z-index: 2;">
@@ -232,8 +235,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="60">
         <p>Modern, elegant accommodation on KwaZulu-Natal's Dolphin Coast. Warm hospitality, a few steps from the sea.</p>
         <div class="socials">
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2a1 1 0 0 1 1-1z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/share/1EvYd4yMjS/?mibextid=wwXIfr" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2a1 1 0 0 1 1-1z"/></svg></a>
+          <a href="https://www.instagram.com/hampshirehotelballito?igsh=MWFvMmdzeG04bXQ2bQ==" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
           <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2.3 1.7 3.9 4 4v3c-1.5 0-2.9-.4-4-1.2V15a6 6 0 1 1-6-6c.3 0 .7 0 1 .1v3.2A3 3 0 1 0 13 15V3z"/></svg></a>
         </div>
       </div>
@@ -251,16 +254,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <h4 class="foot-h">Stay</h4>
         <ul class="foot-links">
-          <li><a href="rooms.html#luxury-queen">Luxury Queen</a></li>
-          <li><a href="rooms.html#standard-king">Standard King</a></li>
-          <li><a href="rooms.html#queen-pool">Queen Pool View</a></li>
+          <li><a href="king-room.html">King Rooms</a></li>
+          <li><a href="queen-room.html">Queen Rooms</a></li>
+          <li><a href="king-mobility-room.html">King Mobility-friendly Rooms</a></li>
+          <li><a href="queen-mobility-room.html">Queen Mobility-friendly Rooms</a></li>
           <li><a href="booknow.html">Book Now</a></li>
         </ul>
       </div>
       <div>
         <h4 class="foot-h">Contact</h4>
         <div class="foot-contact">
-          <span>1 Hampshire Drive, Ballito,<br>KwaZulu-Natal, 4420 <em>(placeholder)</em></span>
+          <span>1 Hampshire Drive, Ballito,<br>KwaZulu-Natal, 4420</span>
           <a href="tel:+27320000000">+27 (0)32 000 0000</a>
           <a href="mailto:reservations@hampshirehotel.co.za">reservations@hampshirehotel.co.za</a>
         </div>
@@ -268,7 +272,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="footer-bottom">
       <span>&copy; <span id="year">2026</span> Hampshire Hotel Ballito. All rights reserved.</span>
-      <span>Designed by Rightside Media &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></span>
+      <span>Developed by <a class="footer-credit" href="https://rightsidemedia.co.za/" target="_blank" rel="noopener noreferrer">Rightside Media</a> &middot; <a href="#">Terms and Conditions</a></span>
     </div>
   </div>
 </footer>
