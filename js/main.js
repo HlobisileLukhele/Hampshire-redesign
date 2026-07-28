@@ -204,6 +204,69 @@
     });
   }
 
+  /* ---- Hero background video ---- */
+  var heroVideos = document.querySelectorAll(".js-hero-video");
+  if (heroVideos.length) {
+    var youtubeApiUrl = "https://www.youtube.com/iframe_api";
+
+    function videoUrl(videoId) {
+      var params = new URLSearchParams({
+        autoplay: "1",
+        mute: "1",
+        loop: "1",
+        playlist: videoId,
+        controls: "0",
+        playsinline: "1",
+        rel: "0",
+        enablejsapi: "1"
+      });
+
+      if (window.location.origin && window.location.origin !== "null") {
+        params.set("origin", window.location.origin);
+      }
+
+      return "https://www.youtube.com/embed/" + encodeURIComponent(videoId) + "?" + params.toString();
+    }
+
+    function showVideoFallback(iframe) {
+      var videoBackground = iframe.closest(".hero-video-bg");
+      if (videoBackground) videoBackground.classList.add("is-video-unavailable");
+    }
+
+    function startPlayer(iframe) {
+      var videoId = iframe.getAttribute("data-video-id");
+      if (!videoId || !window.YT || !window.YT.Player) return;
+
+      iframe.src = videoUrl(videoId);
+      new window.YT.Player(iframe, {
+        events: {
+          onReady: function (event) {
+            event.target.mute();
+            event.target.playVideo();
+          },
+          onError: function () { showVideoFallback(iframe); },
+          onAutoplayBlocked: function () { showVideoFallback(iframe); }
+        }
+      });
+    }
+
+    function initialisePlayers() {
+      heroVideos.forEach(startPlayer);
+    }
+
+    var previousYoutubeReady = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function () {
+      if (typeof previousYoutubeReady === "function") previousYoutubeReady();
+      initialisePlayers();
+    };
+
+    var youtubeApi = document.createElement("script");
+    youtubeApi.src = youtubeApiUrl;
+    youtubeApi.async = true;
+    youtubeApi.onerror = function () { heroVideos.forEach(showVideoFallback); };
+    document.head.appendChild(youtubeApi);
+  }
+
   /* ---- Footer year ---- */
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
