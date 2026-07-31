@@ -665,9 +665,9 @@ h1, h2, h3, h4 {
 
 .nearby-cities { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .city-card { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3/4; box-shadow: var(--shadow-md); }
-.city-card .img-real { transition: transform .6s var(--ease); }
+.city-card .img-real { filter: contrast(1.06) saturate(1.08); transition: transform .6s var(--ease); }
 .city-card:hover .img-real { transform: scale(1.05); }
-.city-card__overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(27,42,74,.9) 0%, rgba(27,42,74,.2) 70%); z-index: 2; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; }
+.city-card__overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.24) 70%); z-index: 2; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; }
 .city-card__overlay h3 { color: #fff; font-size: 1.2rem; margin-bottom: 4px; }
 .city-card__overlay p { color: rgba(255,255,255,.8); font-size: .88rem; margin: 0; }
 
@@ -1152,7 +1152,7 @@ h1, h2, h3, h4 {
 .reviews-track {
   display: flex;
   gap: 20px;
-  animation: infiniteSlide 25s linear infinite;
+  animation: infiniteSlide 18s linear infinite;
 }
 
 @keyframes infiniteSlide {
