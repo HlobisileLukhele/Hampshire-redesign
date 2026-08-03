@@ -88,27 +88,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="booking">
   <div class="container">
     <div class="booking__card" role="search" aria-label="Check availability">
-      <div class="field">
-        <label for="checkIn">Check in</label>
-        <input type="date" id="checkIn">
+      <div class="field booking__when">
+        <span class="booking-field-label">When</span>
+        <div class="booking-date-inputs">
+          <label for="checkIn"><span>Check in</span><input type="date" id="checkIn"></label>
+          <label for="checkOut"><span>Check out</span><input type="date" id="checkOut"></label>
+        </div>
       </div>
-      <div class="field">
-        <label for="checkOut">Check out</label>
-        <input type="date" id="checkOut">
+      <div class="field booking__guests">
+        <span class="booking-field-label" id="guestLabel">Guests</span>
+        <button type="button" class="booking-guest-trigger" id="guestToggle" aria-expanded="false" aria-controls="guestPicker" aria-haspopup="dialog">
+          <span id="guestSummary">2 Guests</span>
+          <span class="booking-guest-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="booking-guest-picker" id="guestPicker" role="dialog" aria-modal="false" aria-labelledby="guestLabel" hidden>
+          <div class="booking-guest-row">
+            <span>Adults</span>
+            <div class="booking-stepper" aria-label="Adults">
+              <button type="button" class="booking-stepper__button" data-guest-type="adults" data-guest-change="-1" aria-label="Remove adult">−</button>
+              <output id="adultCount" aria-live="polite">2</output>
+              <button type="button" class="booking-stepper__button" data-guest-type="adults" data-guest-change="1" aria-label="Add adult">+</button>
+            </div>
+          </div>
+          <div class="booking-guest-row">
+            <span>Children</span>
+            <div class="booking-stepper" aria-label="Children">
+              <button type="button" class="booking-stepper__button" data-guest-type="children" data-guest-change="-1" aria-label="Remove child">−</button>
+              <output id="childCount" aria-live="polite">0</output>
+              <button type="button" class="booking-stepper__button" data-guest-type="children" data-guest-change="1" aria-label="Add child">+</button>
+            </div>
+          </div>
+          <div class="booking-child-ages" id="childAges" hidden>
+            <p>Child ages are required for availability.</p>
+            <div id="childAgeFields"></div>
+          </div>
+        </div>
       </div>
-      <div class="field">
-        <label for="guests">Guests</label>
-        <select id="guests">
-          <option>1</option><option selected>2</option><option>3</option><option>4</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="rooms">Rooms</label>
-        <select id="rooms">
-          <option selected>1</option><option>2</option><option>3</option>
-        </select>
-      </div>
-      <button type="button" class="btn btn-primary" id="checkAvailability">Check Availability</button>
+      <p class="booking__promo-hint"><span>Promo</span><small>Add a code on the booking page</small></p>
+      <button type="button" class="btn btn-primary" id="checkAvailability">Search</button>
     </div>
     <p class="booking__note" id="bookingNote" role="status" aria-live="polite"></p>
   </div>

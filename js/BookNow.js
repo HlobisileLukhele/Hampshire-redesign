@@ -1,39 +1,39 @@
-/* Hampshire Hotel HTI BookNow integration */
+/* Hampshire Hotel HTI BookNow test integration */
 (function () {
   "use strict";
 
   var bookingConfig = {
-    siteId: 218,
+    siteId: 5,
     elementId: "booknow",
-    key: "-Nw8jO3FKE0nBC3JUI6X",
+    apiUrl: "https://test.hti.app/htitest/eres/admin/direct",
     autoSearch: true,
     singleProperty: true,
     connectionCode: "BOOKNOW"
   };
 
   function getBookingSearch() {
-    var params = new URLSearchParams(window.location.search);
-    var search = {
-      checkIn: params.get("checkIn"),
-      checkOut: params.get("checkOut"),
-      guests: params.get("guests"),
-      rooms: params.get("rooms")
-    };
+    var hash = window.location.hash || "";
+    var queryStart = hash.indexOf("?");
+    var params = new URLSearchParams(queryStart === -1 ? "" : hash.slice(queryStart + 1));
+    var childAges = [];
 
-    if (!search.checkIn || !search.checkOut || search.checkOut <= search.checkIn) {
-      try {
-        search = JSON.parse(window.sessionStorage.getItem("hampshireBookingSearch")) || {};
-      } catch (error) {
-        search = {};
-      }
+    try {
+      childAges = JSON.parse(params.get("children") || "[]");
+    } catch (error) {
+      childAges = [];
     }
 
-    return search;
+    return {
+      arrivalDate: params.get("arrivalDate"),
+      departDate: params.get("departDate"),
+      adults: params.get("adults"),
+      childAges: childAges
+    };
   }
 
   function showBookingSearch(search) {
     var summary = document.getElementById("bookingSearchSummary");
-    if (!summary || !search.checkIn || !search.checkOut) return;
+    if (!summary || !search.arrivalDate || !search.departDate) return;
 
     var formatDate = function (value) {
       return new Date(value + "T00:00:00").toLocaleDateString("en-ZA", {
@@ -42,10 +42,13 @@
         year: "numeric"
       });
     };
+    var adultCount = search.adults || "1";
+    var childCount = search.childAges.length;
+    var childText = childCount ? " and " + childCount + (childCount === 1 ? " child" : " children") : "";
 
     summary.textContent =
-      "Requested stay: " + formatDate(search.checkIn) + " to " + formatDate(search.checkOut) +
-      " · " + (search.guests || "1") + " guest(s) · " + (search.rooms || "1") + " room(s).";
+      "Requested stay: " + formatDate(search.arrivalDate) + " to " + formatDate(search.departDate) +
+      " for " + adultCount + (adultCount === "1" ? " adult" : " adults") + childText + ".";
     summary.hidden = false;
   }
 

@@ -35,50 +35,162 @@
   if (bookBtn) {
     var inEl = document.getElementById("checkIn");
     var outEl = document.getElementById("checkOut");
-    var today = new Date().toISOString().split("T")[0];
+    var guestToggle = document.getElementById("guestToggle");
+    var guestPicker = document.getElementById("guestPicker");
+    var guestSummary = document.getElementById("guestSummary");
+    var adultCount = document.getElementById("adultCount");
+    var childCount = document.getElementById("childCount");
+    var childAges = document.getElementById("childAges");
+    var childAgeFields = document.getElementById("childAgeFields");
+    var adults = 2;
+    var children = 0;
+    var today = (function () {
+      var now = new Date();
+      var localNow = new Date(now.getTime() - (now.getTimezoneOffset() * 60000));
+      return localNow.toISOString().split("T")[0];
+    })();
+
+    function setBookingNote(message) {
+      var note = document.getElementById("bookingNote");
+      if (!note) return;
+      note.textContent = message;
+      note.classList.add("show");
+    }
+
+    function updateGuestPicker() {
+      var totalGuests = adults + children;
+      if (adultCount) adultCount.textContent = adults;
+      if (childCount) childCount.textContent = children;
+      if (guestSummary) guestSummary.textContent = totalGuests + (totalGuests === 1 ? " Guest" : " Guests");
+
+      document.querySelectorAll('[data-guest-type="adults"][data-guest-change="-1"]').forEach(function (button) {
+        button.disabled = adults <= 1;
+      });
+      document.querySelectorAll('[data-guest-type="children"][data-guest-change="-1"]').forEach(function (button) {
+        button.disabled = children <= 0;
+      });
+    }
+
+    function renderChildAgeFields() {
+      if (!childAges || !childAgeFields) return;
+
+      var selectedAges = Array.prototype.map.call(childAgeFields.querySelectorAll("select"), function (select) {
+        return select.value;
+      });
+      childAgeFields.innerHTML = "";
+      childAges.hidden = children === 0;
+
+      for (var index = 0; index < children; index += 1) {
+        var field = document.createElement("div");
+        field.className = "booking-child-age-field";
+
+        var label = document.createElement("label");
+        var selectId = "childAge" + (index + 1);
+        label.htmlFor = selectId;
+        label.textContent = "Child " + (index + 1) + " age";
+
+        var select = document.createElement("select");
+        select.id = selectId;
+        select.name = selectId;
+        select.setAttribute("aria-label", "Age for child " + (index + 1));
+
+        var placeholder = document.createElement("option");
+        placeholder.value = "";
+        placeholder.textContent = "Select age";
+        placeholder.disabled = true;
+        placeholder.selected = !selectedAges[index];
+        select.appendChild(placeholder);
+
+        for (var age = 0; age <= 17; age += 1) {
+          var option = document.createElement("option");
+          option.value = age;
+          option.textContent = age === 0 ? "Under 1" : age + (age === 1 ? " year" : " years");
+          option.selected = selectedAges[index] === String(age);
+          select.appendChild(option);
+        }
+
+        field.appendChild(label);
+        field.appendChild(select);
+        childAgeFields.appendChild(field);
+      }
+    }
+
+    function closeGuestPicker() {
+      if (!guestPicker || !guestToggle) return;
+      guestPicker.hidden = true;
+      guestToggle.setAttribute("aria-expanded", "false");
+    }
+
+    if (guestToggle && guestPicker) {
+      guestToggle.addEventListener("click", function () {
+        var willOpen = guestPicker.hidden;
+        guestPicker.hidden = !willOpen;
+        guestToggle.setAttribute("aria-expanded", willOpen ? "true" : "false");
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!guestPicker.hidden && !guestPicker.contains(event.target) && !guestToggle.contains(event.target)) {
+          closeGuestPicker();
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") closeGuestPicker();
+      });
+    }
+
+    document.querySelectorAll(".booking-stepper__button").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var guestType = button.getAttribute("data-guest-type");
+        var change = Number(button.getAttribute("data-guest-change"));
+
+        if (guestType === "adults") {
+          adults = Math.max(1, adults + change);
+        } else if (guestType === "children") {
+          children = Math.max(0, children + change);
+          renderChildAgeFields();
+        }
+
+        updateGuestPicker();
+      });
+    });
+
+    updateGuestPicker();
     if (inEl) inEl.min = today;
     if (outEl) outEl.min = today;
     if (inEl) inEl.addEventListener("change", function () {
       if (outEl) outEl.min = inEl.value || today;
     });
+
     bookBtn.addEventListener("click", function () {
       var selectedCheckIn = inEl && inEl.value;
       var selectedCheckOut = outEl && outEl.value;
-      if (selectedCheckIn && selectedCheckOut && selectedCheckOut > selectedCheckIn) {
-        var selectedGuests = (document.getElementById("guests") || {}).value || "1";
-        var selectedRooms = (document.getElementById("rooms") || {}).value || "1";
-        var bookingSearch = {
-          checkIn: selectedCheckIn,
-          checkOut: selectedCheckOut,
-          guests: selectedGuests,
-          rooms: selectedRooms
-        };
-        var query = new URLSearchParams(bookingSearch);
+      var selectedChildAges = childAgeFields ? Array.prototype.map.call(childAgeFields.querySelectorAll("select"), function (select) {
+        return select.value;
+      }) : [];
 
-        try {
-          window.sessionStorage.setItem("hampshireBookingSearch", JSON.stringify(bookingSearch));
-        } catch (error) {
-          /* The URL query still carries the search if storage is unavailable. */
-        }
-
-        window.location.assign(bookingUrl + "?" + query.toString());
+      if (!selectedCheckIn || !selectedCheckOut) {
+        setBookingNote("Please choose your check-in and check-out dates.");
+        return;
+      }
+      if (selectedCheckOut <= selectedCheckIn) {
+        setBookingNote("Your check-out date must be after check-in.");
+        return;
+      }
+      if (children > 0 && selectedChildAges.some(function (age) { return age === ""; })) {
+        setBookingNote("Please select an age for each child.");
         return;
       }
 
-      var note = document.getElementById("bookingNote");
-      if (!note) return;
-      var ci = inEl && inEl.value, co = outEl && outEl.value;
-      if (!ci || !co) {
-        note.innerHTML = "Please choose your <b>check-in</b> and <b>check-out</b> dates.";
-      } else if (co <= ci) {
-        note.innerHTML = "Your <b>check-out</b> date must be after check-in.";
-      } else {
-        var g = document.getElementById("guests");
-        var fmt = function (d) { return new Date(d).toLocaleDateString("en-ZA", { day: "numeric", month: "short", year: "numeric" }); };
-        note.innerHTML = "Searching availability for <b>" + fmt(ci) + " – " + fmt(co) +
-          "</b> · " + (g ? g.value : "1") + " guest(s). A reservations consultant will confirm your rate shortly.";
-      }
-      note.classList.add("show");
+      var htiSearch = {
+        arrivalDate: selectedCheckIn,
+        departDate: selectedCheckOut,
+        adults: String(adults)
+      };
+      if (children > 0) htiSearch.children = JSON.stringify(selectedChildAges.map(Number));
+
+      closeGuestPicker();
+      window.location.assign(bookingUrl + "#/hotel/90/?" + new URLSearchParams(htiSearch).toString());
     });
   }
 
