@@ -42,7 +42,7 @@
     var childCount = document.getElementById("childCount");
     var childAges = document.getElementById("childAges");
     var childAgeFields = document.getElementById("childAgeFields");
-    var adults = 2;
+    var adults = 0;
     var children = 0;
     var today = (function () {
       var now = new Date();
@@ -64,7 +64,7 @@
       if (guestSummary) guestSummary.textContent = totalGuests + (totalGuests === 1 ? " Guest" : " Guests");
 
       document.querySelectorAll('[data-guest-type="adults"][data-guest-change="-1"]').forEach(function (button) {
-        button.disabled = adults <= 1;
+        button.disabled = adults <= 0;
       });
       document.querySelectorAll('[data-guest-type="children"][data-guest-change="-1"]').forEach(function (button) {
         button.disabled = children <= 0;
@@ -145,7 +145,7 @@
         var change = Number(button.getAttribute("data-guest-change"));
 
         if (guestType === "adults") {
-          adults = Math.max(1, adults + change);
+          adults = Math.max(0, adults + change);
         } else if (guestType === "children") {
           children = Math.max(0, children + change);
           renderChildAgeFields();
@@ -175,6 +175,10 @@
       }
       if (selectedCheckOut <= selectedCheckIn) {
         setBookingNote("Your check-out date must be after check-in.");
+        return;
+      }
+      if (adults < 1) {
+        setBookingNote("Please add at least one adult.");
         return;
       }
       if (children > 0 && selectedChildAges.some(function (age) { return age === ""; })) {
