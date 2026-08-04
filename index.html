@@ -98,7 +98,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="field booking__guests">
         <span class="booking-field-label" id="guestLabel">Guests</span>
         <button type="button" class="booking-guest-trigger" id="guestToggle" aria-expanded="false" aria-controls="guestPicker" aria-haspopup="dialog">
-          <span id="guestSummary">2 Guests</span>
+          <span id="guestSummary">0 Guests</span>
           <span class="booking-guest-chevron" aria-hidden="true"></span>
         </button>
         <div class="booking-guest-picker" id="guestPicker" role="dialog" aria-modal="false" aria-labelledby="guestLabel" hidden>
@@ -106,7 +106,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span>Adults</span>
             <div class="booking-stepper" aria-label="Adults">
               <button type="button" class="booking-stepper__button" data-guest-type="adults" data-guest-change="-1" aria-label="Remove adult">−</button>
-              <output id="adultCount" aria-live="polite">2</output>
+              <output id="adultCount" aria-live="polite">0</output>
               <button type="button" class="booking-stepper__button" data-guest-type="adults" data-guest-change="1" aria-label="Add adult">+</button>
             </div>
           </div>
@@ -124,7 +124,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
       </div>
-      <p class="booking__promo-hint"><span>Promo</span><small>Add a code on the booking page</small></p>
+      <label class="booking__promo" for="promoCode">
+        <span>Promo</span>
+        <input type="text" id="promoCode" name="promoCode" placeholder="Enter promo code" autocomplete="off">
+      </label>
       <button type="button" class="btn btn-primary" id="checkAvailability">Search</button>
     </div>
     <p class="booking__note" id="bookingNote" role="status" aria-live="polite"></p>
