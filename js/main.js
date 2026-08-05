@@ -325,7 +325,7 @@
   if (heroVideos.length) {
     var youtubeApiUrl = "https://www.youtube.com/iframe_api";
 
-    function videoUrl(videoId) {
+    function videoUrl(videoId, isConferenceBackground) {
       var params = new URLSearchParams({
         autoplay: "1",
         mute: "1",
@@ -341,6 +341,12 @@
         params.set("origin", window.location.origin);
       }
 
+      if (isConferenceBackground) {
+        params.set("disablekb", "1");
+        params.set("fs", "0");
+        params.set("iv_load_policy", "3");
+      }
+
       return "https://www.youtube.com/embed/" + encodeURIComponent(videoId) + "?" + params.toString();
     }
 
@@ -349,21 +355,56 @@
       if (videoBackground) videoBackground.classList.add("is-video-unavailable");
     }
 
+    function revealConferenceVideo(iframe) {
+      var conferenceVideo = iframe.closest(".conference-hero__video");
+      if (conferenceVideo) conferenceVideo.classList.add("is-video-playing");
+    }
+
     function startPlayer(iframe) {
       var videoId = iframe.getAttribute("data-video-id");
       if (!videoId || !window.YT || !window.YT.Player) return;
 
-      iframe.src = videoUrl(videoId);
-      new window.YT.Player(iframe, {
+      var isConferenceBackground = iframe.closest(".conference-hero__video") !== null;
+      iframe.src = videoUrl(videoId, isConferenceBackground);
+
+      var playerConfig = {
         events: {
           onReady: function (event) {
             event.target.mute();
             event.target.playVideo();
           },
+          onStateChange: function (event) {
+            if (event.data === window.YT.PlayerState.PLAYING) {
+              revealConferenceVideo(iframe);
+            }
+
+            // Keep a single-video playlist moving even if YouTube reports its end.
+            if (event.data === window.YT.PlayerState.ENDED) {
+              event.target.seekTo(0, true);
+              event.target.playVideo();
+            }
+          },
           onError: function () { showVideoFallback(iframe); },
           onAutoplayBlocked: function () { showVideoFallback(iframe); }
         }
-      });
+      };
+
+      if (isConferenceBackground) {
+        playerConfig.playerVars = {
+          autoplay: 1,
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          iv_load_policy: 3,
+          loop: 1,
+          mute: 1,
+          playlist: videoId,
+          playsinline: 1,
+          rel: 0
+        };
+      }
+
+      new window.YT.Player(iframe, playerConfig);
     }
 
     function initialisePlayers() {
