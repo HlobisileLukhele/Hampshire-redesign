@@ -271,6 +271,11 @@
   margin: 0;
 }
 
+/* Reserve the dropdown's full height so the next field label cannot overlap it. */
+#booknow .bn-guest-input-container .bn-select-item {
+  min-height: 80px;
+}
+
 #booknow .bn-guest-input-container .bn-group input {
   margin: 0;
   width: 100%;
