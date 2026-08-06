@@ -232,6 +232,75 @@
   outline: 3px solid rgba(122, 31, 43, .14);
 }
 
+/* Guest details: give every label, input and custom select the same rhythm. */
+#booknow .bn-guest-input-container {
+  gap: clamp(24px, 3vw, 32px);
+  padding: clamp(24px, 3vw, 36px);
+}
+
+#booknow .bn-guest-input-container > h1,
+#booknow .bn-guest-input-container > h2 {
+  padding: 0;
+}
+
+#booknow .bn-guest-input-container .bn-inputs-group {
+  align-items: flex-start;
+  gap: clamp(20px, 2.5vw, 32px);
+  justify-content: normal;
+}
+
+#booknow .bn-guest-input-container .bn-inputs-left,
+#booknow .bn-guest-input-container .bn-inputs-right {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+#booknow .bn-guest-input-container .bn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+
+#booknow .bn-guest-input-container .bn-group label {
+  display: block;
+  line-height: 1.35;
+  margin: 0;
+}
+
+#booknow .bn-guest-input-container .bn-group input {
+  margin: 0;
+  width: 100%;
+}
+
+/* HTI uses React Select for dropdowns, so style it to match the text inputs. */
+#booknow .bn-guest-input-container .bn-select__control {
+  border: 1px solid var(--line-2) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  min-height: 44px !important;
+}
+
+#booknow .bn-guest-input-container .bn-select__control:hover,
+#booknow .bn-guest-input-container .bn-select__control--is-focused {
+  border-color: var(--maroon) !important;
+}
+
+#booknow .bn-guest-input-container .bn-select__value-container {
+  padding: 2px 12px !important;
+}
+
+#booknow .bn-guest-input-container .bn-select__indicator {
+  color: var(--navy) !important;
+}
+
+#booknow .bn-guest-input-container .bn-select__indicator-separator {
+  background-color: var(--line) !important;
+}
+
 #booknow button[type="submit"],
 #booknow .bn-booknow-button {
   background: var(--maroon) !important;
@@ -421,6 +490,22 @@
   #booknow .bn-room-detail-container,
   #booknow .bn-rate-detail-container {
     padding: 18px;
+  }
+
+  #booknow .bn-guest-input-container {
+    gap: 24px;
+    padding: 20px;
+  }
+
+  #booknow .bn-guest-input-container .bn-inputs-group {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  #booknow .bn-guest-input-container .bn-inputs-left,
+  #booknow .bn-guest-input-container .bn-inputs-right {
+    gap: 18px;
+    width: 100%;
   }
 }
 
