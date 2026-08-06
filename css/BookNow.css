@@ -179,7 +179,8 @@
 
 /* Highlight the selected property and its room price with the brand accent. */
 #booknow .bn-itinerary .bn-itinerary-property-container h3,
-#booknow .bn-itinerary .bn-itinerary-amount-container h4 {
+#booknow .bn-itinerary .bn-itinerary-amount-container h4,
+#booknow .bn-itinerary .bn-itinerary-roomtype-container h4 {
   color: var(--maroon) !important;
 }
 

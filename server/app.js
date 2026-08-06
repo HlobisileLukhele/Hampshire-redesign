@@ -21,7 +21,8 @@ const pages = [
   "pool-view-room.html",
   "queen-mobility-room.html",
   "queen-room.html",
-  "rooms.html"
+  "rooms.html",
+  "terms.html"
 ];
 
 function createApp() {

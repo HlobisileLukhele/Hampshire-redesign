@@ -5,15 +5,42 @@
   var bookingUrl = "booknow.html";
 
   /* ---- Mobile nav ---- */
-    var header = document.querySelector(".site-header");
+  var header = document.querySelector(".site-header");
   var toggle = document.querySelector(".nav-toggle");
+  var navLinks = header ? header.querySelector(".nav-links") : null;
+  var navCta = header ? header.querySelector(".nav-cta") : null;
+  var navBookButton = header ? header.querySelector(".btn-nav-book") : null;
+
+  if (header && navLinks && navCta && navBookButton) {
+    var mobileBookItem = document.createElement("li");
+    mobileBookItem.className = "mobile-book-now";
+    var mobileNavQuery = window.matchMedia("(max-width: 760px)");
+
+    function placeBookNowButton(isMobile) {
+      if (isMobile) {
+        mobileBookItem.appendChild(navBookButton);
+        navLinks.appendChild(mobileBookItem);
+      } else if (mobileBookItem.contains(navBookButton)) {
+        navCta.insertBefore(navBookButton, toggle);
+        mobileBookItem.remove();
+      }
+    }
+
+    placeBookNowButton(mobileNavQuery.matches);
+    if (mobileNavQuery.addEventListener) {
+      mobileNavQuery.addEventListener("change", function (event) { placeBookNowButton(event.matches); });
+    } else {
+      mobileNavQuery.addListener(function (event) { placeBookNowButton(event.matches); });
+    }
+  }
+
   if (toggle && header) {
     toggle.addEventListener("click", function () {
       var open = header.classList.toggle("nav-open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
-    header.querySelectorAll(".nav-links a").forEach(function (a) {
-      a.addEventListener("click", function () { header.classList.remove("nav-open"); });
+    if (navLinks) navLinks.addEventListener("click", function (event) {
+      if (event.target.closest("a")) header.classList.remove("nav-open");
     });
   }
 
