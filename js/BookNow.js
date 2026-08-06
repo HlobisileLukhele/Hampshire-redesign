@@ -62,6 +62,103 @@
       "</div>";
   }
 
+  function createMobileBookingSnackbar(container) {
+    var existing = document.getElementById("bookingSnackbar");
+    if (existing) return existing.__showBookingMessage;
+
+    var snackbar = document.createElement("div");
+    var dismissTimer;
+    var hideTimer;
+
+    snackbar.className = "booking-snackbar";
+    snackbar.id = "bookingSnackbar";
+    snackbar.hidden = true;
+    snackbar.setAttribute("role", "status");
+    snackbar.setAttribute("aria-live", "polite");
+    snackbar.innerHTML =
+      '<span class="booking-snackbar__message">' +
+      '<span class="booking-snackbar__heading">' +
+      '<span class="booking-snackbar__icon" aria-hidden="true">&#10003;</span>' +
+      "Added to cart" +
+      "</span>" +
+      '<span class="booking-snackbar__copy">Your room has been added to your cart.</span>' +
+      '<span class="booking-snackbar__actions">' +
+      '<button class="booking-snackbar__checkout" type="button">Proceed to checkout <span aria-hidden="true">&#8594;</span></button>' +
+      '<button class="booking-snackbar__dismiss" type="button">Dismiss</button>' +
+      "</span>" +
+      "</span>" +
+      '<button class="booking-snackbar__close" type="button" aria-label="Dismiss confirmation">&times;</button>';
+
+    function hideSnackbar() {
+      window.clearTimeout(dismissTimer);
+      snackbar.classList.remove("is-visible");
+      hideTimer = window.setTimeout(function () {
+        snackbar.hidden = true;
+      }, 220);
+    }
+
+    function showSnackbar() {
+      if (!window.matchMedia("(max-width: 768px)").matches) return;
+
+      window.clearTimeout(dismissTimer);
+      window.clearTimeout(hideTimer);
+      snackbar.hidden = false;
+      window.requestAnimationFrame(function () {
+        snackbar.classList.add("is-visible");
+      });
+      dismissTimer = window.setTimeout(hideSnackbar, 6000);
+    }
+
+    function findCheckoutControl() {
+      var controls = container.querySelectorAll("a, button, [role='button']");
+      var checkoutPattern = /checkout|continue to (?:booking|payment)|guest details|payment details/i;
+      var index;
+
+      for (index = 0; index < controls.length; index += 1) {
+        if (checkoutPattern.test(controls[index].textContent || "")) return controls[index];
+      }
+
+      return null;
+    }
+
+    function continueToCheckout() {
+      var checkoutControl = findCheckoutControl();
+      var mobileSummary;
+      var summaryControl;
+
+      hideSnackbar();
+      if (checkoutControl) {
+        checkoutControl.click();
+        return;
+      }
+
+      mobileSummary = container.querySelector(".bn-itinerary-mobile-summary, .bn-itinerary-mobile");
+      if (!mobileSummary) return;
+
+      summaryControl = mobileSummary.querySelector("a, button, [role='button']") || mobileSummary;
+      if (typeof summaryControl.click === "function") summaryControl.click();
+    }
+
+    snackbar.querySelector(".booking-snackbar__checkout").addEventListener("click", continueToCheckout);
+    snackbar.querySelector(".booking-snackbar__dismiss").addEventListener("click", hideSnackbar);
+    snackbar.querySelector(".booking-snackbar__close").addEventListener("click", hideSnackbar);
+    snackbar.__showBookingMessage = showSnackbar;
+    document.body.appendChild(snackbar);
+    return showSnackbar;
+  }
+
+  function setupMobileRoomAddedNotice(container) {
+    var showSnackbar = createMobileBookingSnackbar(container);
+
+    container.addEventListener("click", function (event) {
+      var target = event.target;
+      var button = target && target.closest ? target.closest(".bn-booknow-button") : null;
+
+      if (!button || !/book now/i.test(button.textContent || "")) return;
+      showSnackbar();
+    });
+  }
+
   function watchForProviderError(container) {
     var observer = new MutationObserver(function () {
       var message = (container.textContent || "").toLowerCase();
@@ -80,6 +177,7 @@
     if (!container) return;
 
     showBookingSearch(getBookingSearch());
+    setupMobileRoomAddedNotice(container);
 
     if (typeof window.displayBookNow !== "function") {
       showBookingUnavailable(container);

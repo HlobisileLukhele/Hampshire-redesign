@@ -30,7 +30,8 @@
   --sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Rhythm */
-  --section-y: clamp(60px, 9vw, 120px);
+  --section-y: clamp(48px, 5.6vw, 76px);
+  --section-y-tight: clamp(36px, 4vw, 56px);
   /* Shared height for every inner-page hero (home page intentionally excluded). */
   --inner-page-header-height: clamp(280px, 23vw, 340px);
   /* Adds 15% breathing room beneath inner-page hero content. */
@@ -100,10 +101,10 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--maroon);
   opacity: .7;
 }
-.section-head { max-width: 640px; margin: 0 auto 56px; text-align: center; }
-.section-head .eyebrow { justify-content: center; margin-bottom: 18px; }
+.section-head { max-width: 640px; margin: 0 auto 40px; text-align: center; }
+.section-head .eyebrow { justify-content: center; margin-bottom: 12px; }
 .section-head h2 { font-size: clamp(2rem, 4.2vw, 3rem); }
-.section-head p { color: var(--body); margin: 16px auto 0; max-width: 520px; }
+.section-head p { color: var(--body); margin: 12px auto 0; max-width: 520px; }
 
 /* Section heads on dark backgrounds */
 .section--video-bg .section-head h2,
@@ -365,8 +366,17 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================= */
 .section { padding: var(--section-y) 0; }
 .section--paper { background: var(--paper); }
-.section--tight { padding-top: clamp(40px, 6vw, 72px); }
-.room-description { padding: clamp(44.16px, 6.624vw, 88.32px) 0; }
+.section--tight { padding-block: var(--section-y-tight); }
+.room-description { padding: clamp(40px, 4.5vw, 64px) 0; }
+
+/* Keep the opening content close to every page hero. */
+.page-hero + .section,
+.room-hero + .section,
+.booking + .section,
+.booknow-hero + .booknow-section { padding-top: clamp(36px, 3.2vw, 48px); }
+.page-hero + .section .section-head,
+.room-hero + .section .section-head,
+.booking + .section .section-head { margin-bottom: 36px; }
 
 /* Room cards */
 .room-grid {
@@ -511,7 +521,7 @@ h1, h2, h3, h4, h5, h6 {
    ROOMS PAGE — detailed rows
    ========================================================= */
 .room-row { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
-.room-row + .room-row { margin-top: clamp(48px, 7vw, 90px); }
+.room-row + .room-row { margin-top: clamp(44px, 5.5vw, 68px); }
 .room-row--rev .room-row__media { order: 2; }
 .room-row__media { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); aspect-ratio: 4 / 3; }
 .room-row__body .eyebrow { margin-bottom: 14px; }
@@ -660,7 +670,7 @@ h1, h2, h3, h4, h5, h6 {
 .page-hero__bg.img-bg::after { display: none; }
 .page-hero__bg .img-real { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .page-hero__bg.img-bg::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(19,31,55,.65), rgba(94,23,34,.60)); }
-.contact-hero__bg .img-real { object-position: center center; }
+.contact-hero__bg .img-real { object-position: center 60%; }
 
 /* =========================================================
    NEW: FACILITIES PAGE styles
@@ -1119,14 +1129,14 @@ h1, h2, h3, h4, h5, h6 {
 ═══════════════════════════════════════════ */
 #reviews {
   background: var(--off-white);
-  padding: 100px 0;
+  padding: clamp(56px, 6vw, 80px) 0;
 }
 
 .reviews-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 45px;
+  margin-bottom: 36px;
   gap: 24px;
   flex-wrap: wrap;
 }
