@@ -28,13 +28,18 @@
   padding: clamp(44px, 5.5vw, 72px) 0;
 }
 
+/* Reservations need a wider working area than the standard content pages. */
+.booknow-section > .container {
+  max-width: 1480px;
+}
+
 #booking-wrapper {
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   margin: 0 auto;
-  max-width: var(--container);
+  max-width: 1400px;
   overflow: hidden;
   padding: clamp(18px, 3vw, 32px);
 }
@@ -75,6 +80,8 @@
 #booknow .booknow-container {
   background: transparent;
   color: var(--body);
+  max-width: 100%;
+  width: 100%;
 }
 
 #booknow .bn-page-header,
@@ -115,7 +122,7 @@
 
 #booknow .bn-hotel-room {
   margin-bottom: 24px;
-  padding-bottom: 0;
+  padding: 0 clamp(20px, 2.5vw, 28px) 20px;
 }
 
 #booknow .bn-hotel-detail-container,
@@ -168,6 +175,37 @@
 #booknow .bn-itinerary-mobile-summary h2,
 #booknow .bn-itinerary-mobile-summary h3 {
   color: var(--white);
+}
+
+/* Keep the itinerary dates legible against the dark card background. */
+#booknow .bn-itinerary .bn-itinerary-checkin-checkout-container,
+#booknow .bn-itinerary .bn-itinerary-checkin-checkout-container *,
+#booknow .bn-itinerary .bn-itinerary-dates-container,
+#booknow .bn-itinerary .bn-itinerary-dates-container *,
+#booknow .bn-itinerary-mobile-summary .bn-itinerary-checkin-checkout-container,
+#booknow .bn-itinerary-mobile-summary .bn-itinerary-checkin-checkout-container *,
+#booknow .bn-itinerary-mobile-summary .bn-itinerary-dates-container,
+#booknow .bn-itinerary-mobile-summary .bn-itinerary-dates-container * {
+  color: var(--white) !important;
+}
+
+/* Provider icons inherit the hotel’s accent colour without changing their labels. */
+#booknow .bn-hotel-feature svg,
+#booknow .bn-hotel-feature i,
+#booknow .bn-hotel-feature .svg-inline--fa,
+#booknow .bn-room-info svg,
+#booknow .bn-room-info i,
+#booknow .bn-room-info .svg-inline--fa,
+#booknow .bn-hotel-bed-config svg,
+#booknow .bn-hotel-bed-config i,
+#booknow .bn-hotel-bed-config .svg-inline--fa {
+  color: var(--maroon) !important;
+}
+
+#booknow .bn-hotel-feature svg path,
+#booknow .bn-room-info svg path,
+#booknow .bn-hotel-bed-config svg path {
+  fill: currentColor;
 }
 
 #booknow .bn-rate-total-stay,
@@ -376,6 +414,7 @@
   #booknow .bn-hotel-room {
     border-radius: var(--radius-sm);
     margin-bottom: 18px;
+    padding: 0 16px 16px;
   }
 
   #booknow .bn-hotel-detail-container,
