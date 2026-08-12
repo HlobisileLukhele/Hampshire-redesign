@@ -1,11 +1,12 @@
-/* Hampshire Hotel HTI BookNow test integration */
+/* Hampshire Hotel HTI BookNow integration */
 (function () {
   "use strict";
 
   var bookingConfig = {
-    siteId: 5,
+    siteId: 218,
     elementId: "booknow",
-    apiUrl: "https://test.hti.app/htitest/eres/admin/direct",
+    apiUrl: "https://nebulacrs.hti.app/apollo3/eres/admin/direct",
+    key: "-Nw8jO3FKE0nBC3JUI6X",
     autoSearch: true,
     singleProperty: true,
     connectionCode: "BOOKNOW"

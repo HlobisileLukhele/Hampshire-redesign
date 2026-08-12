@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var bookingUrl = "booknow.html";
+  var bookingUrl = "https://hampshirehotel.co.za/bookings/";
 
   /* ---- Mobile nav ---- */
   var header = document.querySelector(".site-header");
