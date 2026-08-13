@@ -627,6 +627,8 @@ h1, h2, h3, h4, h5, h6 {
 .form-status { margin-top: 14px; font-size: .92rem; color: var(--navy); display: none; }
 .form-status.show { display: block; }
 .form-status b { color: var(--maroon); }
+.form-honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.cf-turnstile { margin: 0 0 18px; min-height: 65px; }
 .map-slot { aspect-ratio: 16/7; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); margin-top: 8px; }
 
 /* =========================================================

@@ -95,6 +95,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Form -->
      <div class="form-card reveal">
   <form id="enquiryForm" novalidate>
+    <div class="form-honeypot" aria-hidden="true">
+      <label for="website">Leave this field empty</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+    </div>
     
     <div class="form-row">
       <div class="form-group">
@@ -122,6 +126,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label for="fMsg">Message</label>
       <textarea id="fMsg" name="message" placeholder="How can we assist you today?..." minlength="10" maxlength="5000" required></textarea>
     </div>
+
+    <input type="hidden" id="turnstileToken" name="turnstileToken" value="">
+    <div id="turnstileWidget" class="cf-turnstile" hidden></div>
     
     <button type="submit" class="btn btn-primary btn-block">Send Enquiry</button>
     <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>

@@ -228,6 +228,51 @@
   /* ---- Contact / enquiry form ---- */
   var form = document.getElementById("enquiryForm");
   if (form) {
+    var turnstileToken = document.getElementById("turnstileToken");
+    var turnstileWidget = document.getElementById("turnstileWidget");
+    var turnstileWidgetId;
+
+    function clearTurnstileToken() {
+      if (turnstileToken) turnstileToken.value = "";
+    }
+
+    function loadTurnstile(siteKey) {
+      if (!turnstileWidget || !siteKey) return;
+
+      var turnstileScript = document.createElement("script");
+      turnstileScript.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      turnstileScript.async = true;
+      turnstileScript.defer = true;
+      turnstileScript.onload = function () {
+        if (!window.turnstile) return;
+
+        turnstileWidget.hidden = false;
+        turnstileWidgetId = window.turnstile.render(turnstileWidget, {
+          sitekey: siteKey,
+          callback: function (token) {
+            if (turnstileToken) turnstileToken.value = token;
+          },
+          "expired-callback": clearTurnstileToken,
+          "error-callback": clearTurnstileToken
+        });
+      };
+      document.head.appendChild(turnstileScript);
+    }
+
+    fetch("/api/public-config", { headers: { Accept: "application/json" } })
+      .then(function (response) {
+        if (!response.ok) return null;
+        return response.json();
+      })
+      .then(function (config) {
+        if (config && config.turnstileEnabled && config.turnstileSiteKey) {
+          loadTurnstile(config.turnstileSiteKey);
+        }
+      })
+      .catch(function () {
+        // The server enforces Turnstile whenever it is enabled; no client fallback is trusted.
+      });
+
     form.addEventListener("submit", async function (ev) {
       ev.preventDefault();
       var status = document.getElementById("formStatus");
@@ -261,6 +306,10 @@
           status.textContent = responseData.message;
         }
         form.reset();
+        clearTurnstileToken();
+        if (turnstileWidgetId !== undefined && window.turnstile) {
+          window.turnstile.reset(turnstileWidgetId);
+        }
       } catch (error) {
         if (status) {
           status.textContent = error.message || "Unable to send your enquiry. Please call reservations for assistance.";

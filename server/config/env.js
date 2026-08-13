@@ -21,11 +21,65 @@ const environmentSchema = z.object({
   DB_CONNECTION_LIMIT: z.coerce.number().int().min(1).max(20).default(5),
   CONTACT_RATE_LIMIT_WINDOW_MINUTES: z.coerce.number().int().min(1).max(1440).default(15),
   CONTACT_RATE_LIMIT_MAX: z.coerce.number().int().min(1).max(100).default(5),
+  CONTACT_EMAIL_RATE_LIMIT_WINDOW_MINUTES: z.coerce.number().int().min(1).max(1440).default(60),
+  CONTACT_EMAIL_RATE_LIMIT_MAX: z.coerce.number().int().min(1).max(100).default(3),
+  CONTACT_DEDUPLICATION_WINDOW_MINUTES: z.coerce.number().int().min(1).max(1440).default(10),
+  TURNSTILE_ENABLED: booleanFromEnvironment.default(false),
+  TURNSTILE_SITE_KEY: z.string().trim().default(""),
+  TURNSTILE_SECRET_KEY: z.string().trim().default(""),
+  TURNSTILE_ALLOWED_HOSTNAMES: z
+    .string()
+    .default("")
+    .transform((value) => value.split(",").map((hostname) => hostname.trim().toLowerCase()).filter(Boolean)),
   MS_TENANT_ID: z.string().trim().min(1, "MS_TENANT_ID is required"),
   MS_CLIENT_ID: z.string().trim().min(1, "MS_CLIENT_ID is required"),
   MS_CLIENT_SECRET: z.string().min(1, "MS_CLIENT_SECRET is required"),
   SENDER_EMAIL: z.string().trim().email("SENDER_EMAIL must be a valid email address"),
   RECIPIENT_EMAIL: z.string().trim().email("RECIPIENT_EMAIL must be a valid email address")
+}).superRefine((environment, context) => {
+  if (environment.NODE_ENV !== "production") {
+    return;
+  }
+
+  if (!environment.DB_SSL) {
+    context.addIssue({
+      code: "custom",
+      path: ["DB_SSL"],
+      message: "DB_SSL must be true in production."
+    });
+  }
+
+  if (!environment.TURNSTILE_ENABLED) {
+    context.addIssue({
+      code: "custom",
+      path: ["TURNSTILE_ENABLED"],
+      message: "TURNSTILE_ENABLED must be true in production."
+    });
+  }
+
+  if (environment.TURNSTILE_ENABLED && !environment.TURNSTILE_SITE_KEY) {
+    context.addIssue({
+      code: "custom",
+      path: ["TURNSTILE_SITE_KEY"],
+      message: "TURNSTILE_SITE_KEY is required when Turnstile is enabled."
+    });
+  }
+
+  if (environment.TURNSTILE_ENABLED && !environment.TURNSTILE_SECRET_KEY) {
+    context.addIssue({
+      code: "custom",
+      path: ["TURNSTILE_SECRET_KEY"],
+      message: "TURNSTILE_SECRET_KEY is required when Turnstile is enabled."
+    });
+  }
+
+  if (environment.TURNSTILE_ENABLED && environment.TURNSTILE_ALLOWED_HOSTNAMES.length === 0) {
+    context.addIssue({
+      code: "custom",
+      path: ["TURNSTILE_ALLOWED_HOSTNAMES"],
+      message: "TURNSTILE_ALLOWED_HOSTNAMES must list the public form hostname(s) in production."
+    });
+  }
 });
 
 const parsedEnvironment = environmentSchema.safeParse(process.env);

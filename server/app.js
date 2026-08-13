@@ -4,6 +4,7 @@ const helmet = require("helmet");
 const env = require("./config/env");
 const healthRouter = require("./routes/health");
 const enquiriesRouter = require("./routes/enquiries");
+const publicConfigRouter = require("./routes/public-config");
 const { errorHandler, notFound } = require("./middleware/error-handler");
 
 const siteRoot = path.resolve(__dirname, "..");
@@ -40,6 +41,7 @@ function createApp() {
   app.use(express.json({ limit: "25kb" }));
 
   app.use("/api/health", healthRouter);
+  app.use("/api/public-config", publicConfigRouter);
   app.use("/api/enquiries", enquiriesRouter);
   app.use("/api", (_request, response) => response.status(404).json({ message: "API endpoint not found." }));
 
