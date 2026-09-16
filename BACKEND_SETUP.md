@@ -11,7 +11,7 @@ The repository includes a dedicated Docker Compose project named `hampshire`. It
 3. Wait for the MySQL health check, then run `npm run migrate`.
 4. Use `npm run db:down` to stop the local database. The `hampshire_mysql_data` volume retains data until explicitly removed.
 
-`.env.docker` is ignored by Git. Use `.env.docker.example` as the safe template.
+`.env` and `.env.docker` are ignored by Git. Create `.env.docker` locally with `MYSQL_DATABASE`, `MYSQL_USER`, `MYSQL_PASSWORD`, and `MYSQL_ROOT_PASSWORD`. Use a different strong password for the root account.
 
 Adminer provides a local browser interface at `http://127.0.0.1:8080` after `npm run db:up`. Select **MySQL**, use `mysql` as the server, `hampshire_app` as the username, the `DB_PASSWORD` value from `.env`, and `hampshire_hotel` as the database.
 
@@ -36,7 +36,7 @@ For a host that separates deployment from migrations, use a short-lived migratio
 
 ## Configure and deploy
 
-1. Rotate the database password previously present in `.env.docker.example`, then copy `.env.example` to `.env`. Enter the new database credentials, Turnstile keys, permitted HTTPS origin(s), and allowed public hostname(s). Never commit `.env`.
+1. Rotate the database password previously present in repository history, then create `.env` locally. Set `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_SSL`, `MS_TENANT_ID`, `MS_CLIENT_ID`, `MS_CLIENT_SECRET`, `SENDER_EMAIL`, and `RECIPIENT_EMAIL`. Set Turnstile keys, permitted HTTPS origin(s), and allowed public hostname(s) for production. Never commit environment files.
 2. Install locked dependencies with `npm ci`.
 3. Run `npm run migrate` once for each deployment that includes a new migration. This creates the enquiry deduplication table used to suppress repeated submissions.
 4. Start the site with `npm start`. The host should route the Hampshire domain to this Node application.
