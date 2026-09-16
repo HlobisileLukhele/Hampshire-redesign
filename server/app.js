@@ -26,6 +26,44 @@ const pages = [
   "terms.html"
 ];
 
+const contentSecurityPolicy = {
+  useDefaults: true,
+  directives: {
+    defaultSrc: ["'self'"],
+    baseUri: ["'self'"],
+    connectSrc: [
+      "'self'",
+      "https://challenges.cloudflare.com",
+      "https://nebulacrs.hti.app",
+      "https://www.google-analytics.com",
+      "https://www.googletagmanager.com"
+    ],
+    fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+    formAction: ["'self'"],
+    frameAncestors: ["'self'"],
+    frameSrc: [
+      "https://challenges.cloudflare.com",
+      "https://maps.google.com",
+      "https://nebulacrs.hti.app",
+      "https://www.googletagmanager.com",
+      "https://www.youtube.com"
+    ],
+    imgSrc: ["'self'", "data:", "https://www.google-analytics.com", "https://www.googletagmanager.com"],
+    mediaSrc: ["'self'"],
+    objectSrc: ["'none'"],
+    scriptSrc: [
+      "'self'",
+      "https://challenges.cloudflare.com",
+      "https://nebulacrs.hti.app",
+      "https://www.google-analytics.com",
+      "https://www.googletagmanager.com",
+      "https://www.youtube.com"
+    ],
+    styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://nebulacrs.hti.app"],
+    ...(env.NODE_ENV === "production" ? { upgradeInsecureRequests: [] } : {})
+  }
+};
+
 function createApp() {
   const app = express();
 
@@ -33,11 +71,23 @@ function createApp() {
   app.set("trust proxy", env.TRUST_PROXY);
   app.use(
     helmet({
-      // The existing site uses third-party resources. Add a strict CSP after those sources are finalised.
-      contentSecurityPolicy: false,
-      crossOriginEmbedderPolicy: false
+      contentSecurityPolicy,
+      crossOriginEmbedderPolicy: false,
+      referrerPolicy: { policy: "strict-origin-when-cross-origin" },
+      strictTransportSecurity: {
+        maxAge: 31536000,
+        includeSubDomains: true,
+        preload: true
+      }
     })
   );
+  app.use((_request, response, next) => {
+    response.setHeader(
+      "Permissions-Policy",
+      "accelerometer=(), camera=(), geolocation=(), gyroscope=(), microphone=(), usb=()"
+    );
+    next();
+  });
   app.use(express.json({ limit: "25kb" }));
 
   app.use("/api/health", healthRouter);

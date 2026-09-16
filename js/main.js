@@ -2,7 +2,8 @@
 (function () {
   "use strict";
 
-  var bookingUrl = "https://hampshirehotel.co.za/bookings/";
+  // Keep availability searches on this redesign's single HTI widget instance.
+  var bookingUrl = "booknow.html";
 
   /* ---- Mobile nav ---- */
   var header = document.querySelector(".site-header");
@@ -236,7 +237,7 @@
       if (turnstileToken) turnstileToken.value = "";
     }
 
-    function loadTurnstile(siteKey) {
+    function loadTurnstile(siteKey, action) {
       if (!turnstileWidget || !siteKey) return;
 
       var turnstileScript = document.createElement("script");
@@ -249,6 +250,7 @@
         turnstileWidget.hidden = false;
         turnstileWidgetId = window.turnstile.render(turnstileWidget, {
           sitekey: siteKey,
+          action: action,
           callback: function (token) {
             if (turnstileToken) turnstileToken.value = token;
           },
@@ -265,8 +267,8 @@
         return response.json();
       })
       .then(function (config) {
-        if (config && config.turnstileEnabled && config.turnstileSiteKey) {
-          loadTurnstile(config.turnstileSiteKey);
+        if (config && config.turnstileEnabled && config.turnstileSiteKey && config.turnstileAction) {
+          loadTurnstile(config.turnstileSiteKey, config.turnstileAction);
         }
       })
       .catch(function () {

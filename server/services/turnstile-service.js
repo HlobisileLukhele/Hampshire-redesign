@@ -44,8 +44,13 @@ async function verifyTurnstile(token, remoteIp) {
 
     const verification = await verificationResponse.json();
     const hostname = typeof verification.hostname === "string" ? verification.hostname.toLowerCase() : "";
+    const action = typeof verification.action === "string" ? verification.action : "";
 
-    if (!verification.success || !env.TURNSTILE_ALLOWED_HOSTNAMES.includes(hostname)) {
+    if (
+      !verification.success ||
+      !env.TURNSTILE_ALLOWED_HOSTNAMES.includes(hostname) ||
+      action !== env.TURNSTILE_ACTION
+    ) {
       throw new TurnstileVerificationError("Please complete the security check and try again.", 400);
     }
   } catch (error) {

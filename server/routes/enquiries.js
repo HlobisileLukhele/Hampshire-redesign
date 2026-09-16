@@ -14,6 +14,29 @@ const { TurnstileVerificationError, verifyTurnstile } = require("../services/tur
 
 const router = express.Router();
 
+function requireTrustedJsonRequest(request, response, next) {
+  if (!request.is("application/json")) {
+    return response.status(415).json({ message: "Requests must use application/json." });
+  }
+
+  const origin = request.get("origin");
+  const isAllowedOrigin = origin && env.CONTACT_ALLOWED_ORIGINS.includes(origin);
+
+  // Browser fetch requests include Origin. In production, reject requests without
+  // an approved origin before parsing or sending them to downstream services.
+  if (env.NODE_ENV === "production" && !isAllowedOrigin) {
+    return response.status(403).json({ message: "This request is not allowed." });
+  }
+
+  // Local development tools may omit Origin. Still reject an explicitly supplied
+  // untrusted origin in every environment.
+  if (origin && !isAllowedOrigin) {
+    return response.status(403).json({ message: "This request is not allowed." });
+  }
+
+  return next();
+}
+
 function optionalText(maximumLength) {
   return z.preprocess(
     (value) => {
@@ -32,7 +55,10 @@ const enquirySchema = z
   .object({
     name: z.string().trim().min(2).max(120),
     email: z.string().trim().email().max(254).transform((value) => value.toLowerCase()),
-    phone: optionalText(40),
+    phone: optionalText(40).refine(
+      (value) => value === undefined || /^[0-9+().\-\s]{7,40}$/.test(value),
+      "Please enter a valid phone number."
+    ),
     subject: optionalText(180),
     message: z.string().trim().min(10).max(5000),
     website: z.string().max(256).optional(),
@@ -71,7 +97,7 @@ function enquiryFingerprint(enquiry) {
     .digest("hex");
 }
 
-router.post("/", enquiryRateLimit, emailRateLimit, async (request, response, next) => {
+router.post("/", requireTrustedJsonRequest, enquiryRateLimit, emailRateLimit, async (request, response, next) => {
   const parsedEnquiry = enquirySchema.safeParse(request.body);
 
   if (!parsedEnquiry.success) {

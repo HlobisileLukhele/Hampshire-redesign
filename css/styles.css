@@ -1505,3 +1505,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
       gap: 20px; /* Adds space between the stacked cards on mobile */
     }
   }
+/* Keeps the review link interaction compatible with the strict script policy. */
+.btn-review-link:hover,
+.btn-review-link:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
+}

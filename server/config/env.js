@@ -8,6 +8,21 @@ const booleanFromEnvironment = z
   .enum(["true", "false"])
   .transform((value) => value === "true");
 
+const commaSeparatedValues = (value) =>
+  value
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+function isHttpsOrigin(value) {
+  try {
+    const origin = new URL(value);
+    return origin.protocol === "https:" && origin.origin === value;
+  } catch {
+    return false;
+  }
+}
+
 const environmentSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   PORT: z.coerce.number().int().min(1).max(65535).default(3000),
@@ -24,13 +39,15 @@ const environmentSchema = z.object({
   CONTACT_EMAIL_RATE_LIMIT_WINDOW_MINUTES: z.coerce.number().int().min(1).max(1440).default(60),
   CONTACT_EMAIL_RATE_LIMIT_MAX: z.coerce.number().int().min(1).max(100).default(3),
   CONTACT_DEDUPLICATION_WINDOW_MINUTES: z.coerce.number().int().min(1).max(1440).default(10),
+  CONTACT_ALLOWED_ORIGINS: z.string().default("").transform(commaSeparatedValues),
   TURNSTILE_ENABLED: booleanFromEnvironment.default(false),
   TURNSTILE_SITE_KEY: z.string().trim().default(""),
   TURNSTILE_SECRET_KEY: z.string().trim().default(""),
+  TURNSTILE_ACTION: z.string().trim().regex(/^[A-Za-z0-9_-]{1,64}$/).default("enquiry"),
   TURNSTILE_ALLOWED_HOSTNAMES: z
     .string()
     .default("")
-    .transform((value) => value.split(",").map((hostname) => hostname.trim().toLowerCase()).filter(Boolean)),
+    .transform((value) => commaSeparatedValues(value).map((hostname) => hostname.toLowerCase())),
   MS_TENANT_ID: z.string().trim().min(1, "MS_TENANT_ID is required"),
   MS_CLIENT_ID: z.string().trim().min(1, "MS_CLIENT_ID is required"),
   MS_CLIENT_SECRET: z.string().min(1, "MS_CLIENT_SECRET is required"),
@@ -46,6 +63,20 @@ const environmentSchema = z.object({
       code: "custom",
       path: ["DB_SSL"],
       message: "DB_SSL must be true in production."
+    });
+  }
+
+  if (environment.CONTACT_ALLOWED_ORIGINS.length === 0) {
+    context.addIssue({
+      code: "custom",
+      path: ["CONTACT_ALLOWED_ORIGINS"],
+      message: "CONTACT_ALLOWED_ORIGINS must list the public HTTPS site origin(s) in production."
+    });
+  } else if (!environment.CONTACT_ALLOWED_ORIGINS.every(isHttpsOrigin)) {
+    context.addIssue({
+      code: "custom",
+      path: ["CONTACT_ALLOWED_ORIGINS"],
+      message: "CONTACT_ALLOWED_ORIGINS must contain complete HTTPS origins, for example https://www.example.com."
     });
   }
 
