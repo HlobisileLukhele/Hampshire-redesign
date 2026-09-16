@@ -96,10 +96,9 @@ function createApp() {
   app.use("/api", (_request, response) => response.status(404).json({ message: "API endpoint not found." }));
 
   app.use("/css", express.static(path.join(siteRoot, "css"), { index: false }));
-  // Image assets are stored in the capitalised Images directory; serve that exact
-  // directory so the hero video fallback also works on case-sensitive hosts.
-  app.use("/Images", express.static(path.join(siteRoot, "Images"), { index: false }));
-  app.use("/images", express.static(path.join(siteRoot, "Images"), { index: false }));
+  // The tracked image directory is lowercase, including on case-sensitive hosts.
+  app.use("/Images", express.static(path.join(siteRoot, "images"), { index: false }));
+  app.use("/images", express.static(path.join(siteRoot, "images"), { index: false }));
   app.use("/js", express.static(path.join(siteRoot, "js"), { index: false }));
 
   app.get("/", (_request, response) => response.sendFile(path.join(siteRoot, "index.html")));

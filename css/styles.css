@@ -266,7 +266,7 @@ h1, h2, h3, h4, h5, h6 {
 /* YouTube hero background with a local image fallback if the embed is unavailable. */
 .hero-video-bg {
   position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
-  background: #1b2a4a url("../Images/welcome.png") center / cover no-repeat;
+  background: #1b2a4a url("../images/welcome.png") center / cover no-repeat;
 }
 .hero-video-bg iframe {
   position: absolute; top: 50%; left: 50%;
@@ -835,7 +835,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   overflow: hidden;
   padding: clamp(48px, 5vw, 72px) 0;
-  background: url("../Images/Room-web.png") center center / cover no-repeat;
+  background: url("../images/Room-web.png") center center / cover no-repeat;
 }
 .room-cta-section::before {
   content: "";
@@ -1283,8 +1283,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 25px; 
 }
 
-/* Force gold color onto nested Font Awesome tags, SVGs, or paths */
-.review-stars i,
+/* Keep review stars gold. */
+.review-stars span,
 .review-stars svg,
 .review-stars path {
   color: #ffd650 !important;
