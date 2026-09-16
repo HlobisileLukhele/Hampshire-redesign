@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
 <!-- Google Tag Manager -->
-<script src="js/analytics.js"></script>
+<script src="js/analytics.js" defer></script>
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/webp" href="images/logo.webp">
   <title>Queen Pool View Room — Hampshire Hotel Ballito</title>
   <meta name="description" content="Our Queen Pool View Room features two queen-size beds, premium linens and a sparkling pool outlook. Book your stay at Hampshire Hotel Ballito.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="css/fonts/poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="css/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -46,10 +46,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </nav>
     </div>
   </header>
+<main id="main-content">
 
 
   <!-- Room Hero -->
-  <section class="room-hero" style="background-image: url('images/Sunset-pool.png');">
+  <section class="room-hero" style="background-image: url('images/Sunset-pool.webp');">
     <div class="room-hero__overlay"></div>
     <div class="room-hero__content">
       <h1>Queen Pool View Room</h1>
@@ -105,10 +106,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="room-gallery-grid">
         <div class="img-slot">
-          <img src="images/Sunset-pool.png" alt="Queen Pool View Room at sunset">
+          <img src="images/Sunset-pool.webp" alt="Queen Pool View Room at sunset">
         </div>
         <div class="img-slot">
-          <img src="images/pool-2.png" alt="Queen Pool View Room daytime view">
+          <img src="images/pool-2.webp" alt="Queen Pool View Room daytime view">
         </div>
         <div class="img-slot">
           <img src="images/Room-web.png" alt="Queen Pool View Room interior">
@@ -176,6 +177,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
 
+  </main>
   <!-- Footer -->
   <footer class="footer" id="footer">
     <div class="footer__inner container">

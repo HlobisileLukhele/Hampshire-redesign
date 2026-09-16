@@ -2,15 +2,15 @@
 <html lang="en-ZA">
 <head>
 <!-- Google Tag Manager -->
-<script src="js/analytics.js"></script>
+<script src="js/analytics.js" defer></script>
 <!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/webp" href="images/logo.webp">
 <title>Hampshire Hotel Ballito — Coastal Luxury on the Dolphin Coast</title>
 <meta name="description" content="Hampshire Hotel Ballito offers modern, elegant accommodation on KwaZulu-Natal's Dolphin Coast. Book sea-facing rooms, suites and curated coastal experiences.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="css/fonts/poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="css/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/styles.css?v=mobile-booking-1">
 </head>
 <body>
@@ -23,7 +23,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="index.html" aria-label="Hampshire Hotel home">
-     <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="60">
+     <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="73">
     </a>
     <nav aria-label="Primary">
       <ul class="nav-links">
@@ -49,22 +49,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </header>
 
+<main id="main-content">
 <!-- ============ HERO ============ -->
 <section class="hero" style="position: relative; overflow: hidden; min-height: 80vh;">
   
   <div class="hero-video-bg" aria-hidden="true">
-    <iframe 
-      class="js-hero-video"
-      data-video-id="GPWsqy1PanI"
-      src="https://www.youtube.com/embed/GPWsqy1PanI?si=beQbiW7f96i0EhT2&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=GPWsqy1PanI&amp;controls=0&amp;playsinline=1&amp;rel=0"
-      frameborder="0" 
-      title="Hampshire Hotel"
-      loading="eager"
-      tabindex="-1"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-      allowfullscreen
-    ></iframe>
+    <picture class="hero-poster">
+      <source media="(max-width: 760px)" srcset="images/hero-mobile.webp">
+      <img src="images/hero-desktop.webp" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+    </picture>
   </div>
 
   <div class="container" style="position: relative; z-index: 2;">
@@ -142,7 +135,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="room-grid mobile-responsive-grid" style="display:grid;grid-template-columns:repeat(2,1fr);max-width:95%;margin:0 auto;gap:24px;">
       <article class="room-card glass-card glass-card--navy reveal">
         <div class="img-slot img-slot--warm">
-          <img class="img-real" src="images/room.png" alt="King Room with one king bed">
+          <img class="img-real" src="images/room-card-king.webp" alt="King Room with one king bed" width="800" height="600" loading="lazy" decoding="async">
         </div>
         <div class="room-card__body">
           <div class="room-card__head">
@@ -158,7 +151,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="room-card glass-card glass-card--navy reveal">
         <div class="img-slot img-slot--cool">
-          <img class="img-real" src="images/Room-web.png" alt="Queen Room with two queen beds">
+          <img class="img-real" src="images/room-card-queen.webp" alt="Queen Room with two queen beds" width="800" height="600" loading="lazy" decoding="async">
         </div>
         <div class="room-card__body">
           <div class="room-card__head">
@@ -214,7 +207,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="split reveal">
       <div class="split__media img-slot img-slot--maroon">
-        <img class="img-real" src="images/ballito-beach.jpg" alt="Ballito coastline">
+        <img class="img-real" src="images/ballito-beach.webp" alt="Ballito coastline" width="1200" height="670" loading="lazy" decoding="async">
         </div>
       <div class="split__body">
         <span class="eyebrow">On the Dolphin Coast</span>
@@ -469,12 +462,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+</main>
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="60">
+        <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="73">
         <p>Modern, elegant accommodation on KwaZulu-Natal's Dolphin Coast. Warm hospitality, a few steps from the sea.</p>
         <div class="socials">
           <a href="https://www.facebook.com/share/1EvYd4yMjS/?mibextid=wwXIfr" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2a1 1 0 0 1 1-1z"/></svg></a>
@@ -483,7 +477,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div>
-        <h4 class="foot-h">Explore</h4>
+        <h2 class="foot-h">Explore</h2>
         <ul class="foot-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="rooms.html">Accommodation</a></li>
@@ -494,7 +488,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
       </div>
       <div>
-        <h4 class="foot-h">Stay</h4>
+        <h2 class="foot-h">Stay</h2>
         <ul class="foot-links">
           <li><a href="king-room.html">Standard King Rooms</a></li>
           <li><a href="queen-room.html">Luxury Queen Rooms</a></li>
@@ -504,7 +498,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
       </div>
       <div>
-        <h4 class="foot-h">Contact</h4>
+        <h2 class="foot-h">Contact</h2>
         <div class="foot-contact">
           <span>4048 Moffat Drive, Ballito Business Park,<br>Ballito, KwaZulu-Natal, 4420</span>
           <a href="tel:+27325866000">+27 (0)32 586 6000</a>

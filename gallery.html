@@ -2,15 +2,15 @@
 <html lang="en-ZA">
 <head>
 <!-- Google Tag Manager -->
-<script src="js/analytics.js"></script>
+<script src="js/analytics.js" defer></script>
 <!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/webp" href="images/logo.webp">
 <title>Gallery — Hampshire Hotel Ballito</title>
 <meta name="description" content="A visual tour of Hampshire Hotel Ballito — rooms, suites, dining, the deck and the Dolphin Coast surrounds.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="css/fonts/poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="css/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -22,7 +22,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="index.html" aria-label="Hampshire Hotel home">
-       <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="60">
+       <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="73">
     </a>
     <nav aria-label="Primary">
       <ul class="nav-links">
@@ -47,6 +47,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </header>
+<main id="main-content">
 
 <section class="page-hero">
   <div class="page-hero__bg img-bg" aria-hidden="true">
@@ -67,10 +68,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img class="img-real" src="images/room.png" alt="Standard King">
         </div>
       <div class="img-slot img-slot--cool tall">
-        <img class="img-real" src="images/Sunset-pool.png" alt="Pool at Sunset">
+        <img class="img-real" src="images/Sunset-pool.webp" alt="Pool at Sunset">
         </div>
       <div class="img-slot img-slot--deep">
-        <img class="img-real" src="images/helpdesk.png" alt="Reception">
+        <img class="img-real" src="images/helpdesk.webp" alt="Reception">
         </div>
      <div class="img-slot img-slot--cool">
         <img class="img-real" src="images/treandmill.webp" alt="Treadmill in the gym">
@@ -83,13 +84,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         
       <div class="img-slot img-slot--warm tall">
-        <img class="img-real" src="images/outside.png" alt="Hotel Exterior">
+        <img class="img-real" src="images/outside.webp" alt="Hotel Exterior">
         </div>
       <div class="img-slot img-slot--deep wide">
         <img class="img-real" src="images/conference-2.webp" alt="Events">
         </div>
       <div class="img-slot img-slot--maroon">
-        <img class="img-real" src="images/welcome.png" alt="Welcome">
+        <img class="img-real" src="images/welcome.webp" alt="Welcome">
         </div>
       <div class="img-slot img-slot--warm">
         <img class="img-real" src="images/drinks-pool.webp" alt="Pool Deck">
@@ -104,7 +105,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="section cta-band cta-band--img-bg">
   <div class="cta-band__bg" aria-hidden="true">
-    <img src="images/Sunset-pool.png" alt="">
+    <img src="images/Sunset-pool.webp" alt="">
   </div>
   <div class="container reveal">
     <h2>Picture yourself here</h2>
@@ -113,11 +114,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+</main>
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="60">
+        <img src="images/logo.webp" alt="Hampshire Hotel Ballito logo" width="70" height="73">
         <p>Modern, elegant accommodation on KwaZulu-Natal's Dolphin Coast. Warm hospitality, a few steps from the sea.</p>
         <div class="socials">
           <a href="https://www.facebook.com/share/1EvYd4yMjS/?mibextid=wwXIfr" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h2.5l.5-3H13v-2a1 1 0 0 1 1-1z"/></svg></a>
@@ -126,7 +128,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div>
-        <h4 class="foot-h">Explore</h4>
+        <h2 class="foot-h">Explore</h2>
         <ul class="foot-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="rooms.html">Accommodation</a></li>
@@ -137,7 +139,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
       </div>
       <div>
-        <h4 class="foot-h">Stay</h4>
+        <h2 class="foot-h">Stay</h2>
         <ul class="foot-links">
           <li><a href="king-room.html">King Rooms</a></li>
           <li><a href="queen-room.html">Queen Rooms</a></li>
@@ -147,7 +149,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
       </div>
       <div>
-        <h4 class="foot-h">Contact</h4>
+        <h2 class="foot-h">Contact</h2>
         <div class="foot-contact">
           <span>4048 Moffat Drive, Ballito Business Park,<br>Ballito, KwaZulu-Natal, 4420</span>
           <a href="tel:+27325866000">+27 (0)32 586 6000</a>

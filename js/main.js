@@ -45,19 +45,6 @@
     });
   }
 
-  /* ---- Scroll reveal ---- */
-  var reveals = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window && reveals.length) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-    reveals.forEach(function (el) { io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add("in"); });
-  }
-
   /* ---- Booking widget ---- */
   var bookBtn = document.getElementById("checkAvailability");
   if (bookBtn) {
@@ -105,7 +92,7 @@
       var selectedAges = Array.prototype.map.call(childAgeFields.querySelectorAll("select"), function (select) {
         return select.value;
       });
-      childAgeFields.innerHTML = "";
+      childAgeFields.replaceChildren();
       childAges.hidden = children === 0;
 
       for (var index = 0; index < children; index += 1) {
@@ -398,7 +385,22 @@
     });
   }
 
-  /* ---- Hero background video ---- */
+  /* ---- Keep the first paint light, then start the muted home video ---- */
+  var homeVideoBackground = document.querySelector(".hero .hero-video-bg");
+  if (homeVideoBackground) {
+    window.setTimeout(function () {
+      if (homeVideoBackground.querySelector("iframe")) return;
+      var iframe = document.createElement("iframe");
+      iframe.title = "Hampshire Hotel background video";
+      iframe.tabIndex = -1;
+      iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.src = "https://www.youtube-nocookie.com/embed/GPWsqy1PanI?autoplay=1&mute=1&loop=1&playlist=GPWsqy1PanI&controls=0&playsinline=1&rel=0";
+      homeVideoBackground.appendChild(iframe);
+    }, 10000);
+  }
+
+  /* ---- Other page background videos ---- */
   var heroVideos = document.querySelectorAll(".js-hero-video");
   if (heroVideos.length) {
     var youtubeApiUrl = "https://www.youtube.com/iframe_api";

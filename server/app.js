@@ -46,7 +46,8 @@ const contentSecurityPolicy = {
       "https://maps.google.com",
       "https://nebulacrs.hti.app",
       "https://www.googletagmanager.com",
-      "https://www.youtube.com"
+      "https://www.youtube.com",
+      "https://www.youtube-nocookie.com"
     ],
     imgSrc: ["'self'", "data:", "https://www.google-analytics.com", "https://www.googletagmanager.com"],
     mediaSrc: ["'self'"],
@@ -101,6 +102,7 @@ function createApp() {
   app.use("/images", express.static(path.join(siteRoot, "images"), { index: false }));
   app.use("/js", express.static(path.join(siteRoot, "js"), { index: false }));
 
+  app.get("/robots.txt", (_request, response) => response.type("text/plain").sendFile(path.join(siteRoot, "robots.txt")));
   app.get("/", (_request, response) => response.sendFile(path.join(siteRoot, "index.html")));
   pages.forEach((page) => {
     app.get(`/${page}`, (_request, response) => response.sendFile(path.join(siteRoot, page)));
